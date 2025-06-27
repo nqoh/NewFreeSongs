@@ -51,4 +51,11 @@ class AuthController extends Controller
             return $this->errorResponse('Invalid credentials.', 401);
         }
     }
+
+    public function logout()
+    {
+        $user = Auth::user();
+        $user->tokens()->delete();
+        return $this->successResponse([], 'Logged out successfully.', 200);
+    }
 }
