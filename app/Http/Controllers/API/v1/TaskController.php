@@ -8,6 +8,8 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use App\Http\Resources\TaskResource;
+use Illuminate\Support\Facades\Gate;
+
 class TaskController extends Controller
 {
     /**
@@ -15,6 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     { 
+        Gate::authorize('viewAny', Task::class);
         return TaskResource::collection(Task::where('user_id', auth()->id())->get());
     }
     /**
@@ -23,11 +26,9 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {  
         // Validate and create the task  and make sure is logged in before store task
-       if(auth()->user() !== null) {
+        Gate::authorize('create', Task::class);
         $task = Task::create($request->validated() + ['user_id' => auth()->id()]);
         return new TaskResource($task); 
-       }
-        return $this->ErrorResponse();
     }
 
     /**
@@ -35,18 +36,14 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-         if($task->user_id !== auth()->id()) {
-            return $this->ErrorResponse();
-        }
+         Gate::authorize('view',$task);
          return new TaskResource($task);
     }
 
 
     public function update(Task $task, UpdateTaskRequest $request)
     {
-        if($task->user_id !== auth()->id()) {
-            return $this->ErrorResponse();
-        }
+          Gate::authorize('update', $task);
           $task->update($request->validated());
           return new TaskResource($task);
     }
@@ -56,12 +53,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        Gate::authorize('delete' , $task);
         $task->delete();
         return response()->noContent();
-    }
-
-    public function ErrorResponse()
-    {
-        return response()->json(['message' => 'Unauthorized'], 403);
     }
 }
