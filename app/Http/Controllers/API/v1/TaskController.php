@@ -14,43 +14,41 @@ class TaskController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return TaskResource::collection(Task::all());
+    { 
+        return TaskResource::collection(Task::where('user_id', auth()->id())->get());
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreTaskRequest $request)
     {  
-      
-
-       $task = Task::create($request->validated());
-
+        // Validate and create the task  and make sure is logged in before store task
+       if(auth()->user() !== null) {
+        $task = Task::create($request->validated() + ['user_id' => auth()->id()]);
         return new TaskResource($task); 
+       }
+        return $this->ErrorResponse();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task)
     {
-         return new TaskResource(Task::findOrFail($id));
+         if($task->user_id !== auth()->id()) {
+            return $this->ErrorResponse();
+        }
+         return new TaskResource($task);
     }
 
 
     public function update(Task $task, UpdateTaskRequest $request)
     {
+        if($task->user_id !== auth()->id()) {
+            return $this->ErrorResponse();
+        }
           $task->update($request->validated());
-         return new TaskResource($task);
+          return new TaskResource($task);
     }
 
     /**
@@ -60,5 +58,10 @@ class TaskController extends Controller
     {
         $task->delete();
         return response()->noContent();
+    }
+
+    public function ErrorResponse()
+    {
+        return response()->json(['message' => 'Unauthorized'], 403);
     }
 }
