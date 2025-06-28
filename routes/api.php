@@ -5,9 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
-Route::prefix('v1')->group(function () {
-    Route::apiResource('tasks', TaskController::class);
-});
 
 // public routes for authentication
 Route::prefix('v1/auth')->group(function () {
@@ -17,7 +14,8 @@ Route::prefix('v1/auth')->group(function () {
 });
 
 // private routes for authenticated users
-Route::group(['prefix' => 'v1/auth' , 'middleware' => 'auth:sanctum'], function () {
+Route::group(['prefix' => 'v1' , 'middleware' => 'auth:sanctum'], function () {
+    Route::apiResource('tasks', TaskController::class);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
