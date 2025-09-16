@@ -1,8 +1,8 @@
-import '../assets/bootstrap/css/bootstrap.min.css'
-import '../assets/animate.css/animate.min.css'
-import '../assets/dropdown/css/style.css'
-import '../assets/theme/css/style.css'
-import '../assets/css/mbr-additional.css'
+import '../../public/assets/bootstrap/css/bootstrap.min.css'
+import '../../public/assets/animate.css/animate.min.css'
+import '../../public/assets/dropdown/css/style.css'
+import '../../public/assets/theme/css/style.css'
+import '../../public/assets/css/mbr-additional.css'
 
 
 import { createInertiaApp, Head, Link, useForm } from '@inertiajs/vue3';
@@ -13,10 +13,10 @@ import { ZiggyVue } from 'ziggy-js';
 import DefaultLayout from './layouts/DefaultLayout.vue';
 
 
-// const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME ;
 
 createInertiaApp({
-    title: title => `${title} | NewFreeSongs `, 
+    title: title => `${title} | ${appName} `, 
       resolve: async (name:string) =>{
         const page = await  resolvePageComponent([`./pages/${name}.vue`]  , import.meta.glob<DefineComponent>('./pages/**/*.vue'));
          page.default.layout ??= DefaultLayout;

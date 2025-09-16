@@ -8,7 +8,7 @@
             <div class="mbr-table-cell">
                 <div class="navbar-brand">
                     <a href="home" class="navbar-logo">
-                        <img src="../../assets/images/favvvtrans-copy-copy-174x128.png" loading="lazy" alt="NewFreeMusic"></a>
+                        <img src="../../../public/assets/images/favCon.png" loading="lazy" alt="NewFreeMusic"></a>
                     <a class="navbar-caption text-info" href="home">NEWFREESONGS</a>
                 </div>
             </div>

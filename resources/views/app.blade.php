@@ -8,11 +8,8 @@
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
         <title inertia>{{ config('app.name', 'NewFreeSongs') }}</title>
-
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
+        <link rel="shortcut icon" href="assets/images/favCon.png" type="image/x-icon">
+        
         @routes
         @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         @inertiaHead
@@ -21,4 +18,9 @@
     <body >
         @inertia
     </body>
+    <script src="assets/web/assets/jquery/jquery.min.js"></script>
+    <script src="assets/smooth-scroll/smooth-scroll.js"></script>
+    <script src="assets/dropdown/js/script.min.js"></script>
+    <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
+    <script src="assets/theme/js/script.js"></script>
 </html>
