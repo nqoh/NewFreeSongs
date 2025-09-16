@@ -1,13 +1,13 @@
 <template>
-  <div>
-      
-  </div>
+     <div>
+       <appSearch />
+     </div>
 </template>
 
 <script setup lang="ts">
-  
+   import appSearch from '@/components/AppSearch.vue'
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+ 
 </style>
