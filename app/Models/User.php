@@ -4,9 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PhpParser\Node\Stmt\GroupUse;
 
 class User extends Authenticatable
 {
@@ -22,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin'
     ];
 
     /**
@@ -46,4 +50,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+ 
+
 }
