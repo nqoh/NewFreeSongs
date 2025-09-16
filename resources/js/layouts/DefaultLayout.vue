@@ -1,13 +1,14 @@
 <template>
     <div>
-       <topNav></topNav>
+      <appHeader />
         <slot />
-
+       <appFooter />
     </div>
 </template>
 
 <script setup lang="ts">
-     import topNav from '@/components/navs.vue'
+     import appHeader from '@/components/appHeader.vue'
+     import appFooter from '@/components/appFooter.vue'
 </script>
 
 <style lang="scss" scoped>
