@@ -17,8 +17,12 @@
      <body> 
     <body >
         @inertia
+        <div id="scrollToTop" class="scrollToTop mbr-arrow-up">
+          <a style="text-align: center;"><i class="mbr-arrow-up-icon"></i></a>
+        </div>
     </body>
     <script src="assets/web/assets/jquery/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/smooth-scroll/smooth-scroll.js"></script>
     <script src="assets/dropdown/js/script.min.js"></script>
     <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
