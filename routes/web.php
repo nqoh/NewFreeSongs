@@ -10,3 +10,4 @@ route::inertia('/terms', 'Terms')->name('page.terms');
 route::inertia('/privacy', 'Privacy')->name('page.privacy');
 route::inertia('/disclaimer', 'Disclaimer')->name('page.disclaimer');
 route::inertia('/aboutus', 'Aboutus')->name('page.about');
+route::inertia('/contactus', 'Contactus')->name('page.contactus');
