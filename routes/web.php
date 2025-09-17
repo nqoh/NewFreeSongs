@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::inertia('/','Welcome')->name('page.welcome');
-Route::inertia('/music','Music')->name('page.music');
-Route::inertia('/videos','Video')->name('page.video');
-route::inertia('/news', 'News')->name('page.news');
-route::inertia('/terms', 'Terms')->name('page.terms');
-route::inertia('/privacy', 'Privacy')->name('page.privacy');
-route::inertia('/disclaimer', 'Disclaimer')->name('page.disclaimer');
-route::inertia('/aboutus', 'Aboutus')->name('page.about');
-route::inertia('/contactus', 'Contactus')->name('page.contactus');
+Route::inertia('/','Welcome')->name('home');
+Route::inertia('/music','Music')->name('music');
+Route::inertia('/videos','Video')->name('videos');
+route::inertia('/news', 'News')->name('news');
+route::inertia('/terms', 'Terms')->name('terms');
+route::inertia('/privacy', 'Privacy')->name('privacy');
+route::inertia('/disclaimer', 'Disclaimer')->name('disclaimer');
+route::inertia('/aboutus', 'Aboutus')->name('aboutus');
+route::inertia('/contactus', 'Contactus')->name('contactus');

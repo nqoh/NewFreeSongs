@@ -29,14 +29,16 @@
       </div>
    </section>
    <div class="container">
-     <p class="text-xs-center">Copyright (c) 2025 NewFreeSongs. &nbsp;
-     <a href="aboutus">About us</a> - <a href="disclaimer">Disclaimer&nbsp;</a></p>
+     <p class="text-sm-center">Copyright (c) 2025 NewFreeSongs. &nbsp;
+     <Link :style="$page.component == 'Aboutus' ? active : ''" :href="route('aboutus')">About us</Link> - 
+     <Link :style="$page.component == 'Disclaimer' ? active : ''" :href="route('disclaimer')">Disclaimer&nbsp;</Link></p>
    </div>
 </footer>
 </template>
 
 <script setup lang="ts">
-
+    import { route } from 'ziggy-js'
+    const active = 'color:#F1C050; text-decoration:underline'
 </script>
 
 <style scoped>
