@@ -24,7 +24,6 @@ createInertiaApp({
          return page;
     },
   
-
    setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
@@ -34,5 +33,9 @@ createInertiaApp({
             .component('useForm', useForm)
             .mount(el);
     },
+    
+    progress:{
+      color:'#F1C050'
+    }
 });
 
