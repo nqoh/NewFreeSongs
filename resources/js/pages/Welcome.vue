@@ -1,12 +1,12 @@
 <template>
      <div>
-       <appSearch />
+       <Search />
        <index />
      </div>
 </template>
 
 <script setup lang="ts">
-   import appSearch from '@/components/AppSearch.vue'
+   import Search from '@/components/home/Search.vue'
    import index from '@/components/home/index.vue'
 </script>
 

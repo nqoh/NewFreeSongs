@@ -4,7 +4,7 @@
               <div class="card cart-block">
                   <div class="card-img">
                       <a href="" >
-                        <img src="../../../../public/images/test.jpg" loading="lazy" alt="" class="card-img-top" />
+                        <img src="../../../public/images/test.jpg" loading="lazy" alt="" class="card-img-top" />
                       </a>
                     </div>
                   <div class="card-block">

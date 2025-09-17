@@ -3,6 +3,7 @@ import '../../public/assets/animate.css/animate.min.css'
 import '../../public/assets/dropdown/css/style.css'
 import '../../public/assets/theme/css/style.css'
 import '../../public/assets/css/mbr-additional.css'
+import '../../public/assets/socicon/css/styles.css'
 
 
 import { createInertiaApp, Head, Link, useForm } from '@inertiajs/vue3';
