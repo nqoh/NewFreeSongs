@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-  import card from '@/components/app/card.vue'
+  import card from '../app/card.vue'
 </script>
 
 <style scoped>

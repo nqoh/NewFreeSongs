@@ -17,7 +17,7 @@ import DefaultLayout from './layouts/DefaultLayout.vue';
 const appName = import.meta.env.VITE_APP_NAME ;
 
 createInertiaApp({
-    title: title => `${title} | ${appName} `, 
+    title: title => `${title}  ${appName} `, 
       resolve: async (name:string) =>{
         const page = await  resolvePageComponent([`./pages/${name}.vue`]  , import.meta.glob<DefineComponent>('./pages/**/*.vue'));
          page.default.layout ??= DefaultLayout;
