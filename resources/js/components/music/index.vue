@@ -10,8 +10,8 @@
 </template>
 
 <script setup lang="ts">
-  import card from '../../composables/card.vue';
-  import pagination from '../../composables/pagination.vue';
+  import card from '../app/card.vue';
+  import pagination from '../app/pagination.vue';
 </script>
 
 <style scoped>

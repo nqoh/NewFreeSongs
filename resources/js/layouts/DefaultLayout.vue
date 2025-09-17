@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-     import appHeader from '@/components/appHeader.vue'
-     import appFooter from '@/components/appFooter.vue'
+     import appHeader from '@/components/app/AppHeader.vue'
+     import appFooter from '@/components/app/AppFooter.vue'
 </script>
 
 <style lang="scss" scoped>
