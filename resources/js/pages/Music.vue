@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import filterLinks from '@/components/music/filterLinks.vue'
 import index from '@/components/music/index.vue';
-import share from '@/components/music/share.vue';
+import share from '@/components/app/share.vue';
 </script>
 
 <style scoped>
