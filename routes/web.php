@@ -6,3 +6,4 @@ Route::inertia('/','Welcome')->name('page.welcome');
 Route::inertia('/music','Music')->name('page.music');
 Route::inertia('/videos','Video')->name('page.video');
 route::inertia('/news', 'News')->name('page.news');
+route::inertia('/terms', 'Terms')->name('page.terms');
