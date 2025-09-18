@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import sharePage from '@/components/app/sharePage.vue';
-import VidoeCard from '@/components/video/videoCard.vue';
+import VidoeCard from '@/components/video/VideoCard.vue';
 import Suggestions from '@/components/app/Suggestions.vue';
 </script>
 

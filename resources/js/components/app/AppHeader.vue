@@ -21,7 +21,7 @@
                     <li class="nav-item dropdown">
                         <Link class="nav-link link" :style="$page.component == 'Welcome' ? active : ''" :href="route('home')">HOME</Link></li><li class="nav-item">
                         <Link class="nav-link link" :style="[$page.component == 'Music' ? active : '', $page.component == 'DownloadTrack' ? active : '']" :href="route('music')">MUSIC</Link></li><li class="nav-item">
-                        <Link class="nav-link link" :style="$page.component == 'Video' ? active : ''" :href="route('videos')">VIDEOS</Link></li><li class="nav-item">
+                        <Link class="nav-link link" :style="[$page.component == 'Videos' ? active : '', $page.component == 'ViewVideo' ? active : '']" :href="route('videos')">VIDEOS</Link></li><li class="nav-item">
                         <Link class="nav-link link" :style="$page.component == 'News' ? active : ''"  :href="route('news')">NEWS</Link></li><li class="nav-item dropdown">
                         <a class="nav-link link dropdown-toggle" :style="[$page.component == 'Terms' ? active : '', $page.component == 'Privacy' ? active : '', $page.component == 'Contactus' ? active : '']"  data-toggle="dropdown-submenu"  aria-expanded="false">
                             HELP</a><div class="dropdown-menu">
