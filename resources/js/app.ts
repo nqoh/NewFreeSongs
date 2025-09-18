@@ -1,11 +1,3 @@
-import '../../public/assets/bootstrap/css/bootstrap.min.css'
-import '../../public/assets/animate.css/animate.min.css'
-import '../../public/assets/dropdown/css/style.css'
-import '../../public/assets/theme/css/style.css'
-import '../../public/assets/css/mbr-additional.css'
-import '../../public/assets/socicon/css/styles.css'
-
-
 import { createInertiaApp, Head, Link, useForm } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';

@@ -9,22 +9,32 @@
 
         <title inertia>{{ config('app.name', 'NewFreeSongs') }}</title>
         <link rel="shortcut icon" href="assets/images/favCon.png" type="image/x-icon">
-        
+
+        <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/animate.css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/dropdown/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/socicon/css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/theme/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/mbr-additional.css') }}" type="text/css">
+
         @routes
         @vite(['resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])
         @inertiaHead
+
     </head>
-     <body> 
+
     <body >
         @inertia
         <div id="scrollToTop" class="scrollToTop mbr-arrow-up">
           <a style="text-align: center;"><i class="mbr-arrow-up-icon"></i></a>
         </div>
+         <div id='audio'></div>
     </body>
-    <script src="assets/web/assets/jquery/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/smooth-scroll/smooth-scroll.js"></script>
-    <script src="assets/dropdown/js/script.min.js"></script>
-    <script src="assets/touch-swipe/jquery.touch-swipe.min.js"></script>
-    <script src="assets/theme/js/script.js"></script>
+
+    <script src="{{ asset('assets/web/assets/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/smooth-scroll/smooth-scroll.js') }}"></script>
+    <script src="{{ asset('assets/dropdown/js/script.min.js') }}"></script>
+    <script src="{{ asset('assets/touch-swipe/jquery.touch-swipe.min.js') }}"></script>
+    <script src="{{ asset('assets/theme/js/script.js') }}"></script>
 </html>

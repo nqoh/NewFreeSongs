@@ -1,5 +1,5 @@
 <template>
-    <filterLinks />
+    <FilterLinks />
 
     <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-1q">
      <div class="mbr-cards-row row" v-for="i in 3" :key="i">
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import filterLinks from '@/components/music/filterLinks.vue'
+import FilterLinks from '@/components/music/filterLinks.vue'
 import pagination from '@/components/app/pagination.vue';
 import sharePage from '@/components/app/sharePage.vue';
 import card from '@/components/app/card.vue';
