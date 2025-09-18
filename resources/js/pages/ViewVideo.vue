@@ -1,0 +1,19 @@
+<template>
+   
+    <vid />
+    <VidoeCard />
+     <Suggestions /> 
+    <sharePage />
+
+    <Head title="Download |" />
+</template>
+
+<script setup lang="ts">
+import sharePage from '@/components/app/sharePage.vue';
+import VidoeCard from '@/components/video/videoCard.vue';
+import Suggestions from '@/components/app/Suggestions.vue';
+</script>
+
+<style scoped>
+
+</style>
