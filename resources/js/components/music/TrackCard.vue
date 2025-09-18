@@ -23,7 +23,7 @@
                       </form>
           
                       <audio  controls style="margin-top: 5%;">
-                       <source src="../../../../public/assets/music/zola.mp3" type="audio/mpeg" />
+                       <source src="/assets/music/zola.mp3" type="audio/mpeg" />
                       </audio>
                 </div>
             </div>

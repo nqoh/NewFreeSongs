@@ -8,7 +8,7 @@
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
         <title inertia>{{ config('app.name', 'NewFreeSongs') }}</title>
-        <link rel="shortcut icon" href="assets/images/favCon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('assets/images/favCon.png') }}" type="image/x-icon">
 
         <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/animate.css/animate.min.css') }}">
