@@ -14,3 +14,4 @@ route::inertia('/aboutus', 'Aboutus')->name('aboutus');
 route::inertia('/contactus', 'Contactus')->name('contactus');
 route::inertia('/music/download/{trackName}', 'DownloadTrack')->name('downloadTrack');
 route::inertia('/video/{videoName}', 'ViewVideo')->name('viewVideo');
+route::inertia('/news/article/{newsTitle}', 'ReadArticle')->name('readNews');

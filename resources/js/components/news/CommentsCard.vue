@@ -1,0 +1,47 @@
+<template>
+<section class="mbr-section articlexx" id="testimonials4-4p">
+
+   <div class="mbr-section mbr-section-nopadding">
+     <div class="col-xs-12 text-xs-center">
+        <h3 class="mbr-section-title display-2" style="color: #7e9b9f !important;">
+            <u>WHAT OUR READERS SAY</u>
+          </h3>
+       </div>
+    <div class="container" style="margin-top: 25px; ">
+        <div class="row">
+            <div class="col-xs-12">
+               <div class="mbr-testimonial card">
+                <div class="card-block" style="background-color:#acacac; border-radius: 5px;">
+                    <p><strong style="color: white;">This is fuca bulshit and dafeasfdafa ..... </strong></p></div>
+                 <div class="mbr-author card-footer">
+                   <div class="mbr-author-name" style="color: gray; margin-top: 0px;">Name of commenter</div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 5%">
+        <Pagination />
+    </div>
+
+    <div>
+        <CommentForm />
+    </div>
+
+</div>
+</section>
+</template>
+
+<script setup lang="ts">
+   import Pagination from '../app/pagination.vue';
+   import CommentForm from './CommentForm.vue';
+</script>
+
+<style scoped>
+  .articlexx{
+    background-color: white; 
+    padding-top: 1%;
+    margin-bottom: -20%;
+  }
+</style>
