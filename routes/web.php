@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::inertia('/','Welcome')->name('home');
+Route::get('/' , HomeController::class)->name('home');
 Route::inertia('/music','Music')->name('music');
 Route::inertia('/videos','Videos')->name('videos');
 route::inertia('/news', 'News')->name('news');

@@ -22,7 +22,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
        Relation::morphMap([
-        'video' => 'App\Models\Video'
+        'Video' => 'App\Models\Videos',
+        'News'  => 'App\Models\News',
+        'Music' => 'App\Models\Music'
        ]);
 
        JsonResource::withoutWrapping();

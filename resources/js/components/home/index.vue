@@ -1,27 +1,32 @@
 <template>
  <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-1u">
   
-    <div class="mbr-cards-row row" v-for="i in 3" :key="i" >
-     
-        <!----Music Card Component-->
-      <card title="HEAVY-K ft Mbuso Khoza - Thatha" type="music" description="After Heavy-K aka Drumboss Played his one hour set on LockDownHouseparty hosted by Channel O on DStv. He released a song, that will be on the next EP (KHUSTAEP ). The song is Called Thatha fearing Mbuso Khoza." 
-        btnClass="btn-info" image="test.jpg" action="Download" />
-
-        <!----News Card Component-->
-        <card title="HEAVY-K ft Mbuso Khoza - Thatha" type="News" description="After Heavy-K aka Drumboss Played his one hour set on LockDownHouseparty hosted by Channel O on DStv. He released a song, that will be on the next EP (KHUSTAEP ). The song is Called Thatha fearing Mbuso Khoza." 
-        btnClass="btn-success" image="test.jpg" action="Read More" />
-
-         <!----Video Card Component-->
-        <card title="HEAVY-K ft Mbuso Khoza - Thatha" type="Video" description="After Heavy-K aka Drumboss Played his one hour set on LockDownHouseparty hosted by Channel O on DStv. He released a song, that will be on the next EP (KHUSTAEP ). The song is Called Thatha fearing Mbuso Khoza." 
-        btnClass="btn-black" image="test.jpg" action="Play" />
-
+    <div class="mbr-cards-row row" v-for="(i, RowIndex) in 3" :key="i" >
+        <!----Card Component-->
+        <template v-for="item in props.data[RowIndex]" :key="item.id">
+          <card
+               :title="item.title" 
+               :type="item.genre ? 'Music' : item.endpoint ? 'Video' : 'News'" 
+               :description="item.description.substr(1,450)+ '...'" 
+               :btnClass="item.genre ? 'btn-info' : item.endpoint ? 'btn-black' : 'btn-success'" 
+               :image="item.image" :action="item.genre ? 'Dwonload' : item.endpoint ? 'Play' : 'Read More'"
+           />
+        </template>
     </div>
 
 </section>
 </template>
 
 <script setup lang="ts">
-  import card from '../app/card.vue'
+
+import card from '../app/card.vue'
+  const props = defineProps({
+      data:{
+      required:true,
+      type: [Object]
+    }
+  })
+
 </script>
 
 <style scoped>

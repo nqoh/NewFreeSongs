@@ -12,8 +12,8 @@ class Comment extends Model
 
     protected $guarded = [];
 
-    public function comentable()
+    public function commentable()
     {
-        return $this->morphBy();
+        return $this->morphTo();
     }
 }

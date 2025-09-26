@@ -19,8 +19,8 @@ class CommentFactory extends Factory
         return [
             'name' => Fake()->firstName(),
             'message' => Fake()->paragraph(15),
-            'comentable_type' => 'News',
-            'comentable_id' => News::all()->random()->id
+            'commentable_type' => 'News',
+            'commentable_id' => News::all()->random()->id
         ];
     }
 }

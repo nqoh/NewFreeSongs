@@ -19,7 +19,7 @@ class newsResource extends JsonResource
             'title'   => $this->title,
             'description' => $this->description,
             'image' => $this->image,
-            'comments' => $this->commentsResource()
+            'comments' =>  CommentsResource::collection($this->comments)
         ];
     }
 }
