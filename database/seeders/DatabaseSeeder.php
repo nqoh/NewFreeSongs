@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contact;
 use App\Models\Music;
 use App\Models\News;
 use App\Models\Subscribe;
@@ -27,6 +28,6 @@ class DatabaseSeeder extends Seeder
         Videos::factory(50)->create();
         News::factory(50)->create();
         Subscribe::factory(20)->create();
-        
+        Contact::factory(5)->create();
     }
 }
