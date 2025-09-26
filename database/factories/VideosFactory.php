@@ -25,7 +25,7 @@ class VideosFactory extends Factory
                 '1550621454.jpg','1550621646.jpg','1550621814.jpg',
                 '1589178742.jpg','1544100757.jpg','1550621814.jpg'
             ]),
-            'endpiont' => Fake()->userName()
+            'endpoint' => Fake()->userName()
         ];
     }
 }
