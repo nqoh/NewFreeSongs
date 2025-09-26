@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Music;
+use App\Models\News;
 use App\Models\User;
 use App\Models\Task;
 use App\Models\Videos;
@@ -23,5 +24,7 @@ class DatabaseSeeder extends Seeder
 
         Music::factory(50)->create();
         Videos::factory(50)->create();
+        News::factory(50)->create();
+        
     }
 }
