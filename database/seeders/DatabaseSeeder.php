@@ -7,8 +7,8 @@ use App\Models\Music;
 use App\Models\News;
 use App\Models\Subscribe;
 use App\Models\User;
-use App\Models\Task;
 use App\Models\Videos;
+use App\Models\Comment;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         News::factory(50)->create();
         Subscribe::factory(20)->create();
         Contact::factory(5)->create();
+        Comment::factory(5)->create();
     }
 }
