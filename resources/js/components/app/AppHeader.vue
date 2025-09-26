@@ -25,9 +25,9 @@
                         <Link class="nav-link link" :style="[$page.component == 'News' ? active : '',$page.component == 'ReadArticle' ? active : '']"  :href="route('news')">NEWS</Link></li><li class="nav-item dropdown">
                         <a class="nav-link link dropdown-toggle" :style="[$page.component == 'Terms' ? active : '', $page.component == 'Privacy' ? active : '', $page.component == 'Contactus' ? active : '']"  data-toggle="dropdown-submenu"  aria-expanded="false">
                             HELP</a><div class="dropdown-menu">
-                            <Link class="dropdown-item" :style="$page.component == 'Terms' ? active : ''" :href="route('terms')">Terms</Link>
-                            <Link class="dropdown-item" :style="$page.component == 'Privacy' ? active : ''" :href="route('privacy')">Privacy policy</Link>
-                            <Link class="dropdown-item" :style="$page.component == 'Contactus' ? active : ''" :href="route('contactus')">Contact us</Link></div></li></ul>
+                            <Link class="dropdown-item" :style="$page.component == 'Terms' ? active : ''" :href="route('terms')">TERMS</Link>
+                            <Link class="dropdown-item" :style="$page.component == 'Privacy' ? active : ''" :href="route('privacy')">PRIVACY POLICY</Link>
+                            <Link class="dropdown-item" :style="$page.component == 'Contactus' ? active : ''" :href="route('contactus')">CONTACT US</Link></div></li></ul>
 
                 <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                     <div class="close-icon"></div>

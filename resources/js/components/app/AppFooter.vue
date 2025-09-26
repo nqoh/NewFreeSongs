@@ -30,8 +30,8 @@
    </section>
    <div class="container">
      <p class="text-sm-center">Copyright (c) 2025 NewFreeSongs. &nbsp;
-     <Link :style="$page.component == 'Aboutus' ? active : ''" :href="route('aboutus')">About us</Link> - 
-     <Link :style="$page.component == 'Disclaimer' ? active : ''" :href="route('disclaimer')">Disclaimer&nbsp;</Link></p>
+     <Link :style="$page.component == 'Aboutus' ? active : ''" :href="route('aboutus')"><b>About us</b></Link> - 
+     <Link :style="$page.component == 'Disclaimer' ? active : ''" :href="route('disclaimer')"><b>Disclaimer</b>&nbsp;</Link></p>
    </div>
 </footer>
 </template>

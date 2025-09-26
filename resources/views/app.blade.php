@@ -28,7 +28,6 @@
         <div id="scrollToTop" class="scrollToTop mbr-arrow-up">
           <a style="text-align: center;"><i class="mbr-arrow-up-icon"></i></a>
         </div>
-         <div id='audio'></div>
     </body>
 
     <script src="{{ asset('assets/web/assets/jquery/jquery.min.js') }}"></script>
