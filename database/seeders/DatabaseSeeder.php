@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Music;
 use App\Models\User;
 use App\Models\Task;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,11 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'NewFreeSongs',
+            'email' => 'info@newfreesongs.com',
         ]);
+
+        Music::factory(50)->create();
     }
 }

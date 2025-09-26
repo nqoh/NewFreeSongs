@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('music', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->boolean('is_complited')->default(false);
+            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('title');
+            $table->longText('description');
+            $table->string('album_art');
+            $table->string('genre');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('music');
     }
 };
