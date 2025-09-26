@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Music;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Videos;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Music::factory(50)->create();
+        Videos::factory(50)->create();
     }
 }
