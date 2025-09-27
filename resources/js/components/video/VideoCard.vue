@@ -3,7 +3,7 @@
     <div class="mbr-table mbr-table-full">
        <div class="mbr-table-cell">
         <div class="container">
-            <div class="row" style="padding: 0px;">
+            <div class="row" style="margin-top: 2%;">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
                     <div class="mbr-figure" style="width: 100%; height: 8%;">
                         <iframe class="mbr-embedded-video" 
@@ -12,7 +12,7 @@
                       </div>
                     </div><br>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12" style="margin-top: 3%">
-                    <h4 class="card-title" align="center"  style="color: gray; font-variant-caps: all-petite-caps;"><b>{{ props.Video.title }}</b></h4>
+                    <h4 class="card-title title" align="center"><b>{{ props.Video.title }}</b></h4>
                     <p class="card-text" align="center">
                       {{ props.Video.description }}
                     <br></p>

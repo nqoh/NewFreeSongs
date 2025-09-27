@@ -3,15 +3,26 @@
           <div class="container">
               <div class="card cart-block">
                   <div class="card-img">
-                      <a href="" >
+                      <Link 
+                      :href="
+                      props.type === 'Music' ? route('DownloadTrack',props.title) :
+                      props.type === 'Video' ? route('viewVideo',props.title) : 
+                      route('readNews',props.title) " >
+
                         <img :src="`/images/${props.image}`" loading="lazy" alt="" class="card-img-top" />
-                      </a>
+
+                      </Link>
                     </div>
                   <div class="card-block">
-                      <h4 class="card-title">{{ props.title }}</h4>
+                      <h4 class="card-title title">{{ props.title }}</h4>
                       <h5 class="card-subtitle">{{ props.type }}</h5>
                          {{ props.description.length > 450 ? props.description.substring(1,450)+ '...' : props.description }}
-                      <div class="card-btn"><a href="" :class="['btn' ,props.btnClass]">{{ props.action }}</a></div>
+                      <div class="card-btn"><Link 
+                      :href="
+                      props.type === 'Music' ? route('DownloadTrack',props.title) :
+                      props.type === 'Video' ? route('viewVideo',props.title) : 
+                      route('readNews',props.title) "  :class="['btn' ,props.btnClass]">{{ props.action }}
+                      </Link></div>
                   </div>
               </div>
           </div>
@@ -19,6 +30,8 @@
   </template>
   
   <script setup lang="ts">
+import { route } from 'ziggy-js';
+
     const props = defineProps({
         title:{
               required:true,

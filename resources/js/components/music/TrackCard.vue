@@ -3,16 +3,16 @@
      <div class="mbr-table" >
         <div class="mbr-table-cell" >
           <div class="container"  >
-            <div class="col col-end-2" style="padding: 0px;">
+            <div class="col col-end-2" style="margin-top: 2%">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xl-4 col-xs-12" >
 
                    <div class="card-img">
-                    <img :src="`/images/${props.Track.image}`" class="card-img-top">
+                    <img :src="`/images/${props.Track.image}`" style="width: 100%;">
                   </div>
 
                   </div>
                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-8 col-xs-12" >
-                      <h4 class="card-title" align="center" style="color: gray; font-variant-caps: all-petite-caps;"><b>{{ props.Track.title }}</b></h4>
+                      <h4 class="card-title title" align="center"><b>{{ props.Track.title }}</b></h4>
                       <p class="card-text">
                         {{ props.Track.description }}
                         <br></p>

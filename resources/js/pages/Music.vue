@@ -7,7 +7,7 @@
        <template v-for="track in Music.data.slice(RowIndex,RowIndex + 1  * 3)" :key="track.id">
         <card 
         :title="track.title" 
-        type="music" 
+        type="Music" 
         :description="track.description" 
         btnClass="btn-info"
         :image="track.image"
