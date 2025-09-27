@@ -5,7 +5,7 @@
      <Suggestions /> 
     <sharePage />
 
-    <Head title="Download |" />
+    <Head title="Video |" />
 </template>
 
 <script setup lang="ts">
