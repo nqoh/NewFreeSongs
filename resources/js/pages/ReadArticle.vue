@@ -1,7 +1,7 @@
 <template>
    
     <ArticleCard :Article="Article"/>
-     <CommentsCard /> 
+     <CommentsCard :comments="Article.comments" /> 
     <sharePage />
 
     <Head title="Article |" />

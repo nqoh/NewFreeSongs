@@ -10,13 +10,19 @@
     <div class="container" style="margin-top: 25px; ">
         <div class="row">
             <div class="col-xs-12">
-               <div class="mbr-testimonial card">
+
+               <div class="mbr-testimonial card" v-for="comment in props.comments.data" :key="comment.id">
                 <div class="card-block" style="background-color:#acacac; border-radius: 5px;">
-                    <p><strong style="color: white;">This is fuca bulshit and dafeasfdafa ..... </strong></p></div>
+                    <p><strong style="color: white;">
+                      {{ comment.message }}
+                    </strong></p></div>
                  <div class="mbr-author card-footer">
-                   <div class="mbr-author-name" style="color: gray; margin-top: 0px;">Name of commenter</div>
+                   <div class="mbr-author-name" style="color: gray; margin-top: 0px;">
+                     {{  comment.name }}
+                   </div>
                   </div>
-              </div>
+               </div>
+
             </div>
         </div>
     </div>
@@ -36,6 +42,13 @@
 <script setup lang="ts">
    import Pagination from '../app/pagination.vue';
    import CommentForm from './CommentForm.vue';
+
+   const props = defineProps({
+        comments:{
+          type:[Object],
+          required:true,
+        }
+   })
 </script>
 
 <style scoped>
