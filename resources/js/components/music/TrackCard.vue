@@ -12,7 +12,7 @@
 
                   </div>
                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-8 col-xs-12" >
-                      <h4 class="card-title">{{ props.Track.title }}</h4>
+                      <h4 class="card-title" align="center" style="color: gray; font-variant-caps: all-petite-caps;"><b>{{ props.Track.title }}</b></h4>
                       <p class="card-text">
                         {{ props.Track.description }}
                         <br></p>

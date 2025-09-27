@@ -36,9 +36,15 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(News $news)
+    public function show($article)
     {
-        //
+         
+        $article = News::where('title', $article)->first();
+        if($article){
+           $article = new newsResource($article);
+           return inertia('ReadArticle',['Article' => $article]);
+         }
+          return inertia('NotFound');
     }
 
     /**

@@ -12,7 +12,7 @@
                       </div>
                     </div><br>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12" style="margin-top: 3%">
-                    <h4 class="card-title" align="center">{{ props.Video.title }}</h4>
+                    <h4 class="card-title" align="center"  style="color: gray; font-variant-caps: all-petite-caps;"><b>{{ props.Video.title }}</b></h4>
                     <p class="card-text" align="center">
                       {{ props.Video.description }}
                     <br></p>
