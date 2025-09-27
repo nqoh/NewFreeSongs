@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\videoResource;
 use App\Models\Videos;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class VideosController extends Controller
      */
     public function index()
     {
-        //
+        $videos = videoResource::collection(Videos::inRandomOrder()->paginate(10));
+        return inertia('Videos',['Videos' => $videos]);
     }
 
     /**

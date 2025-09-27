@@ -2,16 +2,23 @@
     <search />
 
     <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-1q">
-     <div class="mbr-cards-row row" v-for="i in 3" :key="i">
+     <div class="mbr-cards-row row" v-for="(i,RowIndex) in 3" :key="i">
        <!----Music Card Component-->
-       <card title="HEAVY-K ft Mbuso Khoza - Thatha" type="music" description="After Heavy-K aka Drumboss Played his one hour set on LockDownHouseparty hosted by Channel O on DStv. He released a song, that will be on the next EP (KHUSTAEP ). The song is Called Thatha fearing Mbuso Khoza." 
-        btnClass="btn-black" image="test.jpg" action="Play" v-for="i in 3" :key="i" />
+       <template v-for="video in Videos.data.slice(RowIndex , RowIndex + 1  * 3)" :key="video.id">
+        <card 
+         :title="video.title"
+         type="Video" 
+         :description="video.description" 
+         btnClass="btn-black"
+         :image="video.image" action="Play" />
+       </template>
+
      </div>
-      <pagination />
+      <pagination :meta="Videos.meta" />
    </section>
 
     <sharePage />
-
+   
     <Head title="Video |" />
 </template>
 
@@ -20,6 +27,8 @@ import search from      '@/components/app/Search.vue'
 import pagination from '@/components/app/pagination.vue';
 import sharePage from '@/components/app/sharePage.vue';
 import card from '@/components/app/card.vue';
+
+defineProps(['Videos']);
 </script>
 
 <style scoped>

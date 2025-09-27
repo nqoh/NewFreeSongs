@@ -6,7 +6,7 @@ use App\Models\Music;
 use Illuminate\Http\Request;
 use App\Http\Resources\MusicResource;
 
-class MusicController 
+class MusicController  extends Controller
 {
     public function index()
     {

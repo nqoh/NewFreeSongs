@@ -2,13 +2,14 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MusicController;
+use App\Http\Controllers\VideosController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/' , HomeController::class)->name('home');
 Route::resource('/music', MusicController::class)->name('index','music');
+Route::resource('/videos', VideosController::class)->name('index','videos');
 
-Route::inertia('/videos','Videos')->name('videos');
 route::inertia('/news', 'News')->name('news');
 route::inertia('/terms', 'Terms')->name('terms');
 route::inertia('/privacy', 'Privacy')->name('privacy');
