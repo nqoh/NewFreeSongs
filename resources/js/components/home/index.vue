@@ -7,7 +7,7 @@
           <card
                :title="item.title" 
                :type="item.genre ? 'Music' : item.endpoint ? 'Video' : 'News'" 
-               :description="item.description.substr(1,450)+ '...'" 
+               :description="item.description" 
                :btnClass="item.genre ? 'btn-info' : item.endpoint ? 'btn-black' : 'btn-success'" 
                :image="item.image" :action="item.genre ? 'Dwonload' : item.endpoint ? 'Play' : 'Read More'"
            />

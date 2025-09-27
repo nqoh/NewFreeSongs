@@ -1,6 +1,6 @@
 <template>
    
-    <TrackCard />
+    <TrackCard :Track="Track" />
      <Suggestions /> 
     <sharePage />
 
@@ -11,6 +11,7 @@
 import sharePage from '@/components/app/sharePage.vue';
 import TrackCard from '@/components/music/TrackCard.vue';
 import Suggestions from '@/components/app/Suggestions.vue';
+defineProps(['Track'])
 </script>
 
 <style scoped>

@@ -5,14 +5,17 @@
           <div class="container"  >
             <div class="col col-end-2" style="padding: 0px;">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xl-4 col-xs-12" >
-                   <div class="card-img"><img src="../../../../public/images/test.jpg" class="card-img-top"></div>
+
+                   <div class="card-img">
+                    <img :src="`/images/${props.Track.image}`" class="card-img-top">
+                  </div>
+
                   </div>
                    <div class="col-lg-6 col-md-6 col-sm-12 col-xl-8 col-xs-12" >
-                      <h4 class="card-title">Name Of The Track</h4>
+                      <h4 class="card-title">{{ props.Track.title }}</h4>
                       <p class="card-text">
-                          After Heavy-K aka Drumboss Played his one hour set on 
-                          LockDownHouseparty hosted by Channel O on DStv. He released 
-                          a song, that will be on the next EP (KHUSTAEP ). The song is Called Thatha fearing Mbuso Khoza.<br></p>
+                        {{ props.Track.description }}
+                        <br></p>
                    
                       <form action="../../download.php" method="POST" >
                        <div class="mbr-section-btn">
@@ -23,7 +26,7 @@
                       </form>
           
                       <audio  controls style="margin-top: 5%;">
-                       <source src="/assets/music/zola.mp3" type="audio/mpeg" />
+                       <source :src="`/assets/music/${ props.Track.title }.mp3`" type="audio/mpeg" />
                       </audio>
                 </div>
             </div>
@@ -35,6 +38,12 @@
 </template>
 
 <script setup lang="ts">
+const props = defineProps({
+     Track:{
+      type:Object,
+      required:true
+     }
+})
 </script>
 
 <style scoped>

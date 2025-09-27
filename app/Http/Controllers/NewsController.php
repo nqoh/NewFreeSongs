@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\newsResource;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $news = newsResource::collection(News::inRandomOrder()->paginate(10));
+        return inertia('News',['News'=> $news]);
     }
 
     /**

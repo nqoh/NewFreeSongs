@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Music;
 use Illuminate\Http\Request;
 use App\Http\Resources\MusicResource;
+use Illuminate\Support\Facades\Route;
 
 class MusicController  extends Controller
 {
@@ -33,9 +34,15 @@ class MusicController  extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Music $music)
+    public function show($track)
     {
-        //
+        $music = Music::where('title', $track)->first();
+        if($music){
+         $track = new MusicResource($music);
+         return inertia('DownloadTrack', ['Track'=> $track]);
+        }
+   
+        return inertia('NotFound');
     }
 
     /**

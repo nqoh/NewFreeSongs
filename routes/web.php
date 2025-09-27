@@ -2,21 +2,23 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MusicController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\VideosController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/' , HomeController::class)->name('home');
-Route::resource('/music', MusicController::class)->name('index','music');
-Route::resource('/videos', VideosController::class)->name('index','videos');
+Route::get('/music', [MusicController::class,'index'])->name('music');
+Route::get('/videos', [VideosController::class,'index'])->name('videos');
+Route::get('/news', [NewsController::class,'index'])->name('news');
 
-route::inertia('/news', 'News')->name('news');
+Route::get('/music/{track}', [MusicController::class,'show'])->name('DownloadTrack');
+
 route::inertia('/terms', 'Terms')->name('terms');
 route::inertia('/privacy', 'Privacy')->name('privacy');
 route::inertia('/disclaimer', 'Disclaimer')->name('disclaimer');
 route::inertia('/aboutus', 'Aboutus')->name('aboutus');
 route::inertia('/contactus', 'Contactus')->name('contactus');
-route::inertia('/music/download/{trackName}', 'DownloadTrack')->name('downloadTrack');
 route::inertia('/video/{videoName}', 'ViewVideo')->name('viewVideo');
 route::inertia('/news/article/{newsTitle}', 'ReadArticle')->name('readNews');
 

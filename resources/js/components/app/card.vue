@@ -10,7 +10,7 @@
                   <div class="card-block">
                       <h4 class="card-title">{{ props.title }}</h4>
                       <h5 class="card-subtitle">{{ props.type }}</h5>
-                         {{ props.description }}
+                         {{ props.description.length > 450 ? props.description.substring(1,450)+ '...' : props.description }}
                       <div class="card-btn"><a href="" :class="['btn' ,props.btnClass]">{{ props.action }}</a></div>
                   </div>
               </div>
