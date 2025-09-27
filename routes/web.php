@@ -13,6 +13,7 @@ Route::get('/videos', [VideosController::class,'index'])->name('videos');
 Route::get('/news', [NewsController::class,'index'])->name('news');
 
 Route::get('/music/{track}', [MusicController::class,'show'])->name('DownloadTrack');
+route::get('/video/{video}', [VideosController::class,'show'])->name('viewVideo');
 
 route::inertia('/terms', 'Terms')->name('terms');
 route::inertia('/privacy', 'Privacy')->name('privacy');

@@ -1,7 +1,7 @@
 <template>
    
     <vid />
-    <VidoeCard />
+    <VidoeCard :Video="Video"/>
      <Suggestions /> 
     <sharePage />
 
@@ -12,6 +12,7 @@
 import sharePage from '@/components/app/sharePage.vue';
 import VidoeCard from '@/components/video/VideoCard.vue';
 import Suggestions from '@/components/app/Suggestions.vue';
+defineProps(['Video'])
 </script>
 
 <style scoped>

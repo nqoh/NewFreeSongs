@@ -36,9 +36,14 @@ class VideosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Videos $videos)
+    public function show($video)
     {
-        //
+        $video = Videos::where('title', $video)->first();
+        if($video){
+           $video = new videoResource($video);
+           return inertia('ViewVideo',['Video'=> $video]);
+        }
+        return inertia('NotFound');
     }
 
     /**

@@ -7,17 +7,16 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
                     <div class="mbr-figure" style="width: 100%; height: 8%;">
                         <iframe class="mbr-embedded-video" 
-                          src="https://www.youtube.com/embed/?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0"  
+                          :src="`https://www.youtube.com/embed/${props.Video.endpoint}?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0`"  
                          frameborder="0" allowfullscreen></iframe>
                       </div>
                     </div><br>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12" style="margin-top: 3%">
-                    <h4 class="card-title">Name Of The Vidoe</h4>
-                    <p class="card-text">
-                      After Heavy-K aka Drumboss Played his one hour set on 
-                      LockDownHouseparty hosted by Channel O on DStv. He released 
-                      a song, that will be on the next EP (KHUSTAEP ). The song is Called Thatha fearing Mbuso Khoza.<br></p>
-                    </div>
+                    <h4 class="card-title" align="center">{{ props.Video.title }}</h4>
+                    <p class="card-text" align="center">
+                      {{ props.Video.description }}
+                    <br></p>
+                 </div>
             </div>
         </div>
     </div>
@@ -28,7 +27,12 @@
 </template>
 
 <script setup lang="ts">
-
+   const props = defineProps({
+      Video:{
+        type:Object,
+        required:true,
+      }
+   })
 </script>
 
 <style scoped>
