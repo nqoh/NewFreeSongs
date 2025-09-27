@@ -40,8 +40,9 @@ class VideosController extends Controller
     {
         $video = Videos::where('title', $video)->first();
         if($video){
+           $suggestions = videoResource::collection(Videos::inRandomOrder()->take(3)->get()); 
            $video = new videoResource($video);
-           return inertia('ViewVideo',['Video'=> $video]);
+           return inertia('ViewVideo',['Video'=> $video, 'suggestions'=> $suggestions]);
         }
         return inertia('NotFound');
     }

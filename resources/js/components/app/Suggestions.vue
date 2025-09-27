@@ -2,14 +2,28 @@
   <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-1q" style="margin-top: 5%; margin-bottom: 0%;">
     <div class="mbr-cards-row row">
        <!----suggestiuons Card Component-->
-     <card title="HEAVY-K ft Mbuso Khoza - Thatha" type="Music" description="After Heavy-K aka Drumboss Played his one hour set on LockDownHouseparty hosted by Channel O on DStv. He released a song, that will be on the next EP (KHUSTAEP ). The song is Called Thatha fearing Mbuso Khoza." 
-        btnClass="btn-info" image="test.jpg" action="Download" v-for="i in 3" :key="i" />
+       <template v-for="suggestion in props.suggestions" :key="suggestion.id">
+        <card 
+         :title="suggestion.title"
+         :type="suggestion.genre ? 'Music' : suggestion.endpoint ? 'Video' : 'News'" 
+         :description="suggestion.description" 
+         :btnClass="suggestion.genre ? 'btn-info' : suggestion.endpoint ? 'btn-black' : 'btn-success'" 
+         :image="suggestion.image" 
+         :action="suggestion.genre ? 'Dwonload' : suggestion.endpoint ? 'Play' : 'Read More'" />
+       </template>
+
      </div>
   </section>
 </template>
 
 <script setup lang="ts">
     import card from './card.vue';
+    const props = defineProps({
+      suggestions:{
+        type:[Object],
+        required:true,
+      }
+    })
 </script>
 
 <style scoped>

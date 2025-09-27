@@ -38,8 +38,9 @@ class MusicController  extends Controller
     {
         $music = Music::where('title', $track)->first();
         if($music){
+         $suggestions = MusicResource::collection(Music::inRandomOrder()->take(3)->get()); 
          $track = new MusicResource($music);
-         return inertia('DownloadTrack', ['Track'=> $track]);
+         return inertia('DownloadTrack', ['Track'=> $track,'suggestions'=> $suggestions]);
         }
    
         return inertia('NotFound');
