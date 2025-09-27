@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-xs-center">
-                <h3 class="mbr-section-title display-2">Disclaimer</h3>
+                <h3 class="mbr-section-title display-2 title">Disclaimer</h3>
 
             </div>
         </div>

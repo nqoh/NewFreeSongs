@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
 use App\Http\Resources\newsResource;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -28,9 +29,15 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function storeComment(CommentRequest $request)
     {
-        //
+          News::find($request->id)->comments()->create([
+            'name'=> $request->name,
+            'message' => $request->message
+          ]);
+
+          return back()->with('comment','Your comment was successfuly!');
+
     }
 
     /**

@@ -16,11 +16,11 @@ class newsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'user_id' => $this->id,
+            'id' => $this->id,
             'title'   => $this->title,
             'description' => $this->description,
             'image' => $this->image,
-            'comments' =>  Comment::where('commentable_id',$this->id)->paginate(2)
+            'comments' =>  Comment::where('commentable_id',$this->id)->latest()->paginate(2)
         ];
     }
 }

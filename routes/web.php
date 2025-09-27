@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\NewsController;
@@ -16,6 +17,7 @@ Route::get('/news', [NewsController::class,'index'])->name('news');
 Route::get('/music/{track}', [MusicController::class,'show'])->name('DownloadTrack');
 route::get('/video/{video}', [VideosController::class,'show'])->name('viewVideo');
 route::get('/news/{article}', [NewsController::class,'show'])->name('readNews');
+route::post('/comment', [NewsController::class,'storeComment'])->name('Comment');
 
 route::inertia('/terms', 'Terms')->name('terms');
 route::inertia('/privacy', 'Privacy')->name('privacy');

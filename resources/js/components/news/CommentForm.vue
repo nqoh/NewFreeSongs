@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="margin-top: 12%;">
       <div class="col-xs-12 text-xs-center">
         <h3 class="mbr-section-title display-2" style="color: rgb(83, 83, 83);">COMMENT</h3>
         <small class="mbr-section-subtitle">Post your oponion on this article.</small>
@@ -9,23 +9,35 @@
     <div class="row">
       <div class="col-xs-12 col-lg-10  col-lg-offset-1">
         
-        <div class="alert alert-form alert-success text-xs-center">Thanks for contacting us!</div>
+        <div class="alert alert-form alert-success text-xs-center" v-if="flash">
+          {{ $page.props.comment }}
+        </div>
 
-          <form action="../../../comment_article" method="post" >
+          <form @submit.prevent="submitComment" >
             <div class="form-group">
                 <label class="form-control-label" for="name">
                     Name <span  style="color: red;">*</span></label>
-                <input type="text" class="form-control" name="name" required="true" >
-                <p style="color: red">Error</p> <br>
+                <input type="text" class="form-control" v-model.trim="form.name" required="true" >
+                <p style="color: red" v-if="form.errors.name">{{ form.errors.name }}</p> <br>
                </div>
 
                 <div class="form-group">
-                 <label class="form-control-label" for="message">Message</label>
-                 <textarea class="form-control" name="message" rows="7"></textarea>
-                 <p style="color: red">Error</p> <br>
+                 <label class="form-control-label" for="message" >Message <span  style="color: red;">*</span></label>
+                 <textarea class="form-control" name="message" rows="7" v-model.trim="form.message"></textarea>
+                 <p style="color: red" v-if="form.errors.message">{{ form.errors.message }}</p> <br>
                 </div>
-              <button type="submit" class="btn btn-primary">COMMENT</button>
+
+              <button type="submit" class="btn btn-primary" :disabled="form.processing">
+                <span v-if="form.processing">
+                    PLEASE WAIT...
+                </span>
+                <span v-else>
+                  COMMENT
+                </span>
+              </button>
+
            </form>
+
          </div>
        </div>
     </div>         
@@ -34,6 +46,38 @@
 </template>
 
 <script setup lang="ts">
+import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
+
+const props = defineProps({
+         id:{
+           required:true,
+           type:Number
+     }
+})
+
+ const form = useForm({
+        name:'',
+        message:'',
+        id:props.id,
+   })
+
+
+  const flash  = ref(false)
+
+   const submitComment = ()=>{
+    form.post('/comment', {
+      preserveScroll:true,
+       onSuccess(){
+         form.clearErrors()
+         form.reset()
+         flash.value = true
+         setTimeout(()=>{
+           flash.value = false
+         }, 2000)
+       }
+    },)
+   }
 
 </script>
 

@@ -29,24 +29,24 @@
 
     <div style="margin-top: 5%">
         <Pagination />
-    </div>
-
-    <div>
-        <CommentForm />
-    </div>
-
+    </div> 
 </div>
 </section>
+  <CommentForm :id="props.id" />
+
 </template>
 
 <script setup lang="ts">
    import Pagination from '../app/pagination.vue';
    import CommentForm from './CommentForm.vue';
-
    const props = defineProps({
         comments:{
           type:[Object],
           required:true,
+        },
+        id:{
+          required:true,
+          type:Number
         }
    })
 </script>

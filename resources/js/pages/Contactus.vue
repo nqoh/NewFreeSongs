@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-xs-center">
-                <h3 class="mbr-section-title display-2">CONTACT FORM</h3>
+                <h3 class="mbr-section-title display-2 title" >CONTACT FORM</h3>
                 <small class="mbr-section-subtitle">Let us know how much you love our work, Thanks.</small>
             </div>
         </div>
