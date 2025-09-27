@@ -6,15 +6,15 @@
             <div class="col-xs-12">
                 <h3 class="mbr-section-title display-4">
                     <p>
-                        <a href="../../../../music/genre/hiphop" class="text-info">Hiphop</a> -
-                        <a href="../../../../music/genre/mix">Mix</a>
-                        <a href=""></a> -
-                        <a href="../../../../music/genre/gqom" class="text-info">Gqom</a> -
-                        <a href="../../../../music/genre/gospel">Gospel</a><a href="../../#">
-                        </a> - <a href="../../../../music/genre/house" class="text-info">House</a> -
-                        <a href="../../../../music/genre/afrobeat">Afrobeat</a><a href="../../#">
-                        </a>&nbsp;- <a href="../../../../music/genre/piano" class="text-info">Piano</a>
-                        - <a href="../../../../music/genre/other" >Other</a>
+                        <Link @click.prevent="filterMusic('')" >All</Link> -
+                        <Link @click.prevent="filterMusic('Hiphop')" class="text-info">Hiphop</Link> -
+                        <Link @click.prevent="filterMusic('Mix')">Mix</Link> -
+                        <Link @click.prevent="filterMusic('Gqom')" class="text-info">Gqom</Link> -
+                        <Link @click.prevent="filterMusic('Gospel')">Gospel</Link> -
+                        <Link @click.prevent="filterMusic('House')" class="text-info">House</Link> -
+                        <Link @click.prevent="filterMusic('Afrobeat')">Afrobeat</Link> -
+                        <Link @click.prevent="filterMusic('Piano')" class="text-info">Piano</Link> -
+                        <Link @click.prevent="filterMusic('Other')" >Other</Link>
                     </p>
                 </h3>
             </div>
@@ -24,6 +24,11 @@
 </template>
 
 <script setup lang="ts">
+import {  router  } from '@inertiajs/vue3';
+
+const filterMusic = (selectedFilter:string)=>{
+    router.post("music", {genre: selectedFilter});
+}
 
 </script>
 

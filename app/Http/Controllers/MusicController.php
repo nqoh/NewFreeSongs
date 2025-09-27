@@ -9,12 +9,17 @@ use Illuminate\Support\Facades\Route;
 
 class MusicController  extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $music = MusicResource::collection(Music::inRandomOrder()->paginate(10));
-        return inertia('Music', ['Music'=> $music]);
+         if($request->genre){
+            $music = MusicResource::collection(Music::where('genre',$request->genre)->paginate(10));
+            return inertia('Music', ['Music'=> $music]);
+         }
+         $music = MusicResource::collection(Music::inRandomOrder()->paginate(10));
+         return inertia('Music', ['Music'=> $music]);
     }
 
+ 
     /**
      * Show the form for creating a new resource.
      */
