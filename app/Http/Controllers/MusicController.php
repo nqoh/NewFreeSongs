@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Music;
 use Illuminate\Http\Request;
+use App\Http\Resources\MusicResource;
 
-class MusicController extends Controller
+class MusicController 
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $music = MusicResource::collection(Music::inRandomOrder()->paginate(10));
+        return inertia('Music', ['Music'=> $music]);
     }
 
     /**

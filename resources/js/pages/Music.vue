@@ -2,12 +2,21 @@
     <FilterLinks />
 
     <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-1q">
-     <div class="mbr-cards-row row" v-for="i in 3" :key="i">
+     <div class="mbr-cards-row row" v-for="(i, RowIndex) in 3" :key="i">
        <!----Music Card Component-->
-       <card title="HEAVY-K ft Mbuso Khoza - Thatha" type="music" description="After Heavy-K aka Drumboss Played his one hour set on LockDownHouseparty hosted by Channel O on DStv. He released a song, that will be on the next EP (KHUSTAEP ). The song is Called Thatha fearing Mbuso Khoza." 
-        btnClass="btn-info" image="test.jpg" action="Download" v-for="i in 3" :key="i" />
+       <template v-for="track in Music.data.slice(RowIndex,RowIndex + 1  * 3)" :key="track.id">
+        <card 
+        :title="track.title" 
+        type="music" 
+        :description="track.description" 
+        btnClass="btn-info"
+        :image="track.image"
+        action="Download"
+        />
+       </template>
+
      </div>
-      <pagination />
+      <pagination  :meta="Music.meta" />
    </section>
 
     <sharePage />
@@ -16,10 +25,11 @@
 </template>
 
 <script setup lang="ts">
-import FilterLinks from '@/components/music/filterLinks.vue'
+import FilterLinks from '@/components/music/FilterLinks.vue'
 import pagination from '@/components/app/pagination.vue';
 import sharePage from '@/components/app/sharePage.vue';
 import card from '@/components/app/card.vue';
+defineProps(['Music']);
 </script>
 
 <style scoped>
