@@ -18,6 +18,7 @@ Route::get('/music/{track}', [MusicController::class,'show'])->name('DownloadTra
 route::get('/video/{video}', [VideosController::class,'show'])->name('viewVideo');
 route::get('/news/{article}', [NewsController::class,'show'])->name('readNews');
 route::post('/comment', [NewsController::class,'storeComment'])->name('Comment');
+route::post('/contactus', [ContactController::class,'store'])->name('contact');
 
 route::inertia('/terms', 'Terms')->name('terms');
 route::inertia('/privacy', 'Privacy')->name('privacy');
