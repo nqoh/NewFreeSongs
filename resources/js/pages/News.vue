@@ -15,10 +15,10 @@
           />
         </template>
      </div>
-      <pagination />
+      <pagination :meta="News.meta" />
    </section>
 
-    <sharePage :meta="News.meta"/>
+    <sharePage />
 
     <Head title="News |" />
 

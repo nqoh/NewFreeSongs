@@ -1,5 +1,5 @@
 <template>
-    <FilterLinks />
+    <FilterLinks :Genre="Genre"/>
 
     <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-1q">
      <div class="mbr-cards-row row" v-for="(i, RowIndex) in 3" :key="i">
@@ -16,20 +16,19 @@
        </template>
 
      </div>
-      <pagination  :meta="Music.meta" />
+      <pagination  :meta="Music.meta" :Genre="Genre" />
    </section>
 
-    <sharePage />
-
+    <sharePage />   
     <Head title="Music |" />
 </template>
 
 <script setup lang="ts">
-import FilterLinks from '@/components/music/FilterLinks.vue'
+import FilterLinks from '@/components/music/filterLinks.vue'
 import pagination from '@/components/app/pagination.vue';
 import sharePage from '@/components/app/sharePage.vue';
 import card from '@/components/app/card.vue';
-defineProps(['Music']);
+defineProps(['Music','Genre']);
 </script>
 
 <style scoped>

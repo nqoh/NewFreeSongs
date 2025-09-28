@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/' , HomeController::class)->name('home');
 Route::get('/music', [MusicController::class,'index'])->name('music');
-Route::post('/music', [MusicController::class, 'index'])->name('FilterMusic');
 Route::get('/videos', [VideosController::class,'index'])->name('videos');
 Route::get('/news', [NewsController::class,'index'])->name('news');
 Route::get('/music/{track}', [MusicController::class,'show'])->name('DownloadTrack');

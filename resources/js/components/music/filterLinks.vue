@@ -4,17 +4,17 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h3 class="mbr-section-title display-4">
+                <h3 class="mbr-section-title display-5">
                     <p>
-                        <Link @click.prevent="filterMusic('')" >All</Link> -
-                        <Link @click.prevent="filterMusic('Hiphop')" class="text-info">Hiphop</Link> -
-                        <Link @click.prevent="filterMusic('Mix')">Mix</Link> -
-                        <Link @click.prevent="filterMusic('Gqom')" class="text-info">Gqom</Link> -
-                        <Link @click.prevent="filterMusic('Gospel')">Gospel</Link> -
-                        <Link @click.prevent="filterMusic('House')" class="text-info">House</Link> -
-                        <Link @click.prevent="filterMusic('Afrobeat')">Afrobeat</Link> -
-                        <Link @click.prevent="filterMusic('Piano')" class="text-info">Piano</Link> -
-                        <Link @click.prevent="filterMusic('Other')" >Other</Link>
+                        <Link :href="route('music')" :style="Genre ? '':' text-decoration: underline'" >All</Link> -
+                        <Link href="?genre=Hiphop" class="text-info" :style="Genre === 'Hiphop' ? 'text-decoration: underline' : ''">Hiphop </Link> -
+                        <Link href="?genre=Mix" :style="Genre === 'Mix' ? 'text-decoration: underline' : ''">Mix</Link> -
+                        <Link href="?genre=Gqom" class="text-info" :style="Genre === 'Gqom' ? 'text-decoration: underline' : ''">Gqom</Link> -
+                        <Link href="?genre=Gospel" :style="Genre === 'Gospel' ? 'text-decoration: underline' : ''">Gospel</Link> -
+                        <Link href="?genre=House" class="text-info" :style="Genre === 'House' ? 'text-decoration: underline' : ''">House</Link> -
+                        <Link href="?genre=Afrobeat" :style="Genre === 'Afrobeat' ? 'text-decoration: underline' : ''">Afrobeat</Link> -
+                        <Link href="?genre=Piano" class="text-info" :style="Genre === 'Piano' ? 'text-decoration: underline' : ''">Piano</Link> -
+                        <Link href="?genre=Other" :style="Genre === 'Other' ? 'text-decoration: underline' : ''">Other</Link>
                     </p>
                 </h3>
             </div>
@@ -24,13 +24,10 @@
 </template>
 
 <script setup lang="ts">
-import {  router  } from '@inertiajs/vue3';
-
-const filterMusic = (selectedFilter:string)=>{
-    router.post("music", {genre: selectedFilter});
-}
-
+import { route } from 'ziggy-js'
+defineProps(['Genre'])
 </script>
+
 
 <style scoped>
  .article {

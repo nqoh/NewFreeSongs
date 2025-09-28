@@ -28,7 +28,7 @@
     </div>
 
     <div style="margin-top: 5%">
-        <Pagination />
+       <Pagination  :meta="props.comments" :preserveScroll="true" />
     </div> 
 </div>
 </section>
