@@ -1,6 +1,6 @@
 <template>
     <div class="mbr-cards-col col-xs-12 col-lg-3">
-          <div class="container">
+          <div class="container" style="padding: 0px;" >
               <div class="card cart-block">
                   <div class="card-img">
                       <Link 
@@ -9,7 +9,7 @@
                       props.type === 'Video' ? route('viewVideo',props.title) : 
                       route('readNews',props.title) " >
 
-                        <img :src="`/images/${props.image}`" loading="lazy" alt="" class="card-img-top" />
+                        <img :src="`/images/${props.image}`" :alt="props.title" />
 
                       </Link>
                     </div>
