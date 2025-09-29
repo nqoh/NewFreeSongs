@@ -1,5 +1,5 @@
 <template>
-    <div class="mbr-cards-col col-xs-12 col-lg-3">
+    <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding: 1%;">
           <div class="container" style="padding: 0px;" >
               <div class="card cart-block">
                   <div class="card-img">
