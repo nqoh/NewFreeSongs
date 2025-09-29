@@ -10,7 +10,7 @@
                     </div>
                    </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xl-8 col-xs-12" >
-                       <h4 class="card-title title" align="center"><b>{{ props.Article.title }}</b></h4>
+                       <h1 class=" title" align="center"><b>{{ props.Article.title }}</b></h1>
                        <p class="card-text">
                         {{ props.Article.description }}
                         <br></p>

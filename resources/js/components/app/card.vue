@@ -2,7 +2,7 @@
     <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding: 1%;">
           <div class="container" style="padding: 0px;" >
               <div class="card cart-block">
-                  <div class="card-img">
+                  <div class="card-img" >
                       <Link 
                       :href="
                       props.type === 'Music' ? route('DownloadTrack',props.title) :
@@ -13,12 +13,13 @@
 
                       </Link>
                     </div>
-                  <div class="card-block">
-                      <h4 class="card-title title">{{ props.title }}</h4>
-                      <h5 class="card-subtitle">{{ props.type }}</h5>
+                  <div class="card-block" style="padding: 1%;">
+                      <h1 class=" title">{{ props.title }}</h1>
+                      <h5 class="card-subtitle" style="padding: 2%; padding-bottom: 0px; ">{{ props.type }}</h5>
                          {{ props.description.length > 450 ? props.description.substring(1,450)+ '...' : props.description }}
-                      <div class="card-btn"><Link 
-                      :href="
+                      <div class="card-btn">
+                        <Link 
+                        :href="
                       props.type === 'Music' ? route('DownloadTrack',props.title) :
                       props.type === 'Video' ? route('viewVideo',props.title) : 
                       route('readNews',props.title) "  :class="['btn' ,props.btnClass]">{{ props.action }}
