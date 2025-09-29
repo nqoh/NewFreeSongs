@@ -36,9 +36,16 @@ class VideosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($video)
+    public function show(Request $request, $video)
     {
         $video = Videos::where('title', $video)->first();
+
+        if(!$request->cookie('video'.$video->id))
+        {
+           cookie()->queue('video'.$video->id,'video'.$video->id , 60 * 24);
+           return "not seet";
+        }
+
         if($video){
            $suggestions = videoResource::collection(Videos::inRandomOrder()->take(3)->get()); 
            $video = new videoResource($video);

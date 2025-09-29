@@ -44,9 +44,16 @@ class MusicController  extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($track)
+    public function show(Request $request, $track)
     {
         $music = Music::where('title', $track)->first();
+
+        if(!$request->cookie('music'.$music->id))
+        {
+           cookie()->queue('music'.$music->id,'music'.$music->id , 60 * 24);
+           return "not seet";
+        }
+
         if($music){
          $suggestions = MusicResource::collection(Music::inRandomOrder()->take(3)->get()); 
          $track = new MusicResource($music);

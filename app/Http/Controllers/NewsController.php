@@ -43,10 +43,18 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($article)
+    public function show(Request $request, $article)
     {
          
         $article = News::where('title', $article)->first();
+
+         if(!$request->cookie('news'.$article->id))
+         {
+            cookie()->queue('news'.$article->id,'news'.$article->id , 60 * 24);
+            return "not seet";
+         }
+
+
         if($article){
            $article = new newsResource($article);
            return inertia('ReadArticle',['Article' => $article]);
