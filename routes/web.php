@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\VideosController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,7 @@ route::get('/news/{article}', [NewsController::class,'show'])->name('readNews');
 route::post('/comment', [NewsController::class,'storeComment'])->name('Comment');
 route::post('/contactus', [ContactController::class,'store'])->name('contact');
 route::post('/subscribe', SubscribeController::class)->name('subscribe');
+route::get('/search', SearchController::class)->name('search');
 
 route::inertia('/terms', 'Terms')->name('terms');
 route::inertia('/privacy', 'Privacy')->name('privacy');

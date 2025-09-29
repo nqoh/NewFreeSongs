@@ -51,6 +51,19 @@ class User extends Authenticatable
         ];
     }
 
- 
+    public function music()
+    {
+        return $this->hasMany(Music::class);
+    }
+
+    public function vidoes()
+    {
+        return $this->hasMany(Videos::class);
+    }
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 
 }

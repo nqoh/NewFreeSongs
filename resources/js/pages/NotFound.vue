@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
           <div class="col-xs-12 text-xs-center">
-           <h3 class="mbr-section-title display-2" style="color: rgb(83, 83, 83);">Error</h3>
+           <h3 class="mbr-section-title display-1 title" >Error</h3>
            <small class="mbr-section-subtitle">404: Ooops NewFreeSongs not found...</small>
            <img src="/assets/images/log.png"  />
            </div>

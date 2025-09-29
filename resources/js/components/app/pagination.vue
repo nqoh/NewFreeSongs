@@ -5,6 +5,7 @@
           <div class="col-xs-12">
             <div class="text-xs-center">
                <template v-if="visiblePages.length > 1" >
+                <h2 class="title"  >Page {{ currentPage }} of {{ lastPage }}</h2>
                    <template v-for="page in visiblePages" :key="page">
                      <span v-if="page === '...'" class="btn"  style="color:black; cursor:not-allowed; font-size: 1em; padding: 0%;">
                          <b>...</b>
@@ -12,7 +13,7 @@
                       <Link
                         v-else
                          :preserve-scroll="props.preserveScroll"
-                         :href="Genre ?  meta.path + '?genre='+Genre+'&page='+ page : meta.path + '?page='+ page "
+                         :href="Query ?  meta.path + '?query='+props.Query+'&page='+ page : Genre ?  meta.path + '?genre='+Genre+'&page='+ page : meta.path + '?page='+ page "
                          :class="page === currentPage ? 'btn btn-black' : 'btn btn-black-outline btn-black' "
                          >
                          {{ page }}     
@@ -37,6 +38,10 @@ import { computed } from 'vue';
          Genre:{
           type:String,
           default:''
+         },
+         Query:{
+           type:String,
+           default:''
          },
          preserveScroll:{
            type:Boolean,

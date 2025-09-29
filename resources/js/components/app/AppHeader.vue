@@ -7,9 +7,10 @@
         <div class="mbr-table">
             <div class="mbr-table-cell">
                 <div class="navbar-brand">
-                    <a href="home" class="navbar-logo">
-                        <img src="/assets/images/favCon.png" loading="lazy" alt="NewFreeMusic"></a>
-                    <a class="navbar-caption text-info" href="home">NEWFREESONGS</a>
+                    <Link :href="route('home')" class="navbar-logo">
+                        <img src="/assets/images/favCon.png" loading="lazy" alt="NewFreeMusic">
+                    </Link>
+                    <Link class="navbar-caption text-info" :href="route('home')" >NEWFREESONGS </Link>
                 </div>
             </div>
 

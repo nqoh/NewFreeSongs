@@ -1,9 +1,9 @@
 <template>
-    <footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-i">
+    <footer class="mbr-small-footer mbr-section mbr-section-nopadding"  id="footer1-i">
      <section class="mbr-section section" id="form2-4a">
        <div class="mbr-section mbr-section__container mbr-section__container--middle">
           <div class="col-xs-12 text-xs-center">
-            <h3 class="mbr-section-title display-2">Subscribe to our Newsletter</h3>
+            <h3 class="mbr-section-title display-2 title">Subscribe to our Newsletter</h3>
            </div>
         </div>
       <div class="mbr-section mbr-section-nopadding">
