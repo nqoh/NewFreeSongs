@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('image');
             $table->string('genre');
+            $table->integer('daily_visits')->default(0);
             $table->timestamps();
         });
     }

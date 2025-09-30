@@ -13,7 +13,7 @@ class VideosController extends Controller
      */
     public function index()
     {
-        $videos = videoResource::collection(Videos::inRandomOrder()->paginate(10));
+        $videos = videoResource::collection(Videos::orderBy('today_visits','DESC')->paginate(10));
         return inertia('Videos',['Videos' => $videos]);
     }
 
@@ -42,8 +42,8 @@ class VideosController extends Controller
 
         if(!$request->cookie('video'.$video->id))
         {
+           $video->update(['today_visits' => $video->today_visits + 1]); 
            cookie()->queue('video'.$video->id,'video'.$video->id , 60 * 24);
-           return "not seet";
         }
 
         if($video){

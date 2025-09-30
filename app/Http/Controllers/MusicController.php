@@ -15,12 +15,12 @@ class MusicController  extends Controller
             $music = MusicResource::collection(
                  Music::when(request('genre'),function($query){
                    $query->where('genre', request('genre')); 
-                    })->paginate(10)->withQueryString()
+                    })->orderBy('today_visits','DESC')->paginate(10)->withQueryString()
                  );
             return inertia('Music', ['Music'=> $music, 'Genre'=>request('genre')]);
          }
          
-         $music = MusicResource::collection(Music::inRandomOrder()->paginate(10));
+         $music = MusicResource::collection(Music::orderBy('today_visits','DESC')->paginate(10));
          return inertia('Music', ['Music'=> $music]);
     }
 
@@ -47,11 +47,11 @@ class MusicController  extends Controller
     public function show(Request $request, $track)
     {
         $music = Music::where('title', $track)->first();
-
+    
         if(!$request->cookie('music'.$music->id))
         {
+           $music->update(['today_visits' => $music->today_visits + 1]);  
            cookie()->queue('music'.$music->id,'music'.$music->id , 60 * 24);
-           return "not seet";
         }
 
         if($music){

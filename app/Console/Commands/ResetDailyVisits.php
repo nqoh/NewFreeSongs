@@ -19,15 +19,17 @@ class ResetDailyVisits extends Command
      *
      * @var string
      */
-    protected $description = 'Reset daily_visits column for all users at midnight';
+    protected $description = 'Reset today_visits column for all users, vidoes, news  at midnight';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        DB::table('music')->update(['daily_visits'=>0]);
+        DB::table('music')->update(['today_visits'=>0]);
+        // DB::table('vidoes')->update(['today_visits'=>0]);
+        // DB::table('news')->update(['today_visits'=>0]);
 
-        $this->info('All music , videos, news \' daily visits have been reset to 0.');
+        $this->info('All music , videos, news \' today visits have been reset to 0.');
     }
 }

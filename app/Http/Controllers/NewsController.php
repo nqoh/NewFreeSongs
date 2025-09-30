@@ -14,7 +14,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = newsResource::collection(News::inRandomOrder()->paginate(10));
+        $news = newsResource::collection(News::orderBy('today_visits','DESC')->paginate(10));
         return inertia('News',['News'=> $news]);
     }
 
@@ -50,8 +50,8 @@ class NewsController extends Controller
 
          if(!$request->cookie('news'.$article->id))
          {
+            $article->update(['today_visits' => $article->today_visits + 1]); 
             cookie()->queue('news'.$article->id,'news'.$article->id , 60 * 24);
-            return "not seet";
          }
 
 
