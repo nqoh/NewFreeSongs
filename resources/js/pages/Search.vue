@@ -1,7 +1,7 @@
 <template>
     <search :Query="Query"/>
     <div align="center"  v-if="Data.total">
-        <h1 class="title"  style="margin-top: -1%; "> {{ Data.total }} Results</h1>
+        <h1 class="title"> {{ Data.total }} Results</h1>
     </div>
    
     <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-1q">

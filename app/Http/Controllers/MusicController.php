@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\DailyVisits;
 use App\Models\Music;
 use Illuminate\Http\Request;
 use App\Http\Resources\MusicResource;
-use Illuminate\Support\Facades\Route;
+
 
 class MusicController  extends Controller
 {
+    use DailyVisits;
+
     public function index()
     {
-         if(request()->has('genre')){
+        if(request()->has('genre')){
             $music = MusicResource::collection(
                  Music::when(request('genre'),function($query){
                    $query->where('genre', request('genre')); 
-                    })->orderBy('today_visits','DESC')->paginate(10)->withQueryString()
+                    })->orderBy('daily_visits','DESC')->paginate(10)->withQueryString()
                  );
             return inertia('Music', ['Music'=> $music, 'Genre'=>request('genre')]);
          }
          
-         $music = MusicResource::collection(Music::orderBy('today_visits','DESC')->paginate(10));
+         $music = MusicResource::collection(Music::orderBy('daily_visits','DESC')->paginate(10));
          return inertia('Music', ['Music'=> $music]);
     }
 
@@ -46,18 +49,16 @@ class MusicController  extends Controller
      */
     public function show(Request $request, $track)
     {
-        $music = Music::where('title', $track)->first();
-    
-        if(!$request->cookie('music'.$music->id))
-        {
-           $music->update(['today_visits' => $music->today_visits + 1]);  
-           cookie()->queue('music'.$music->id,'music'.$music->id , 60 * 24);
-        }
+       
+         $music = Music::where('title', $track)->first();
 
         if($music){
+
+         $this->visits($request, $music,"Music");   
          $suggestions = MusicResource::collection(Music::inRandomOrder()->take(3)->get()); 
          $track = new MusicResource($music);
          return inertia('DownloadTrack', ['Track'=> $track,'suggestions'=> $suggestions]);
+         
         }
         return inertia('NotFound');
     }

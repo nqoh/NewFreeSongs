@@ -21,4 +21,9 @@ class News extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function visits()
+    {
+        return $this->morphMany(Daily_visits::class,'visited');
+    }
 }

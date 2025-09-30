@@ -5,16 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CommentRequest;
 use App\Http\Resources\newsResource;
 use App\Models\News;
+use App\DailyVisits;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use DailyVisits;
+
     public function index()
     {
-        $news = newsResource::collection(News::orderBy('today_visits','DESC')->paginate(10));
+        $news = newsResource::collection(News::orderBy('daily_visits','DESC')->paginate(10));
         return inertia('News',['News'=> $news]);
     }
 
@@ -37,7 +37,6 @@ class NewsController extends Controller
           ]);
 
           return back()->with('comment','Your comment was successfuly!');
-
     }
 
     /**
@@ -48,16 +47,13 @@ class NewsController extends Controller
          
         $article = News::where('title', $article)->first();
 
-         if(!$request->cookie('news'.$article->id))
-         {
-            $article->update(['today_visits' => $article->today_visits + 1]); 
-            cookie()->queue('news'.$article->id,'news'.$article->id , 60 * 24);
-         }
-
-
         if($article){
+
+           $this->visits($request, $article,"News");
+           
            $article = new newsResource($article);
            return inertia('ReadArticle',['Article' => $article]);
+
          }
           return inertia('NotFound');
     }
