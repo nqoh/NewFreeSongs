@@ -29,7 +29,7 @@
 
               <button type="submit" class="btn btn-primary" :disabled="form.processing">
                 <span v-if="form.processing">
-                    PLEASE WAIT...
+                  <img src="/assets/images/loader.gif" width="25" />
                 </span>
                 <span v-else>
                   COMMENT

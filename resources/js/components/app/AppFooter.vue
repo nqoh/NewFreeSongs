@@ -23,7 +23,7 @@
                               <span class="input-group-btn">
                                 <button type="submit"  id="sub" class="btn btn-primary">
                                    <span v-if="form.processing">
-                                     PLEASE WAIT...
+                                    <img src="/assets/images/loader.gif" width="25" />
                                    </span>
                                    <span v-else>
                                     SUBSCRIBE

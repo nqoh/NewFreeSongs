@@ -20,7 +20,45 @@
    </section>
 
     <sharePage />   
-    <Head title="Music |" />
+    <Head>
+        <meta name='description' 
+              content="Download and Stream New free songs, today at NewFreeSongs" />
+
+        <meta name='keywords' 
+              content="Hipop, Piano, House,  Gqom , Afrobeat, Gospel, Maskandi, free mp3, download ,new free songs" />
+
+        <meta property='og:title' 
+              content="Download Music | NewFreeSongs" />
+
+       <meta property='og:description' 
+             content="Download and Stream the latest music and more at NewFreeSongs" />
+
+       <meta property='og:image' 
+             content="https://newfreesongs.com/public/assets/images/log.png" />
+
+
+       <meta property='og:url' 
+             content="https://newfreesongs.com/music" />
+
+       <meta property='og:type' 
+             content="website" />
+
+       <meta property='og:site_name' 
+             content="NewFreeSongs" />
+
+         <!--- Twitter Card --->
+       <meta name='twitter:card' 
+             content="https://newfreesongs.com/public/assets/images/log.png" />
+
+       <meta name='twitter:title' 
+             content="Download Music | NewFreeSongs" />
+
+       <meta name='twitter:description' 
+             content="Download and Stream the latest music and more at NewFreeSongs" />
+        
+        <title>Music |</title>
+</Head>
+
 </template>
 
 <script setup lang="ts">

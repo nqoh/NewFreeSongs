@@ -19,7 +19,45 @@
 
     <sharePage />
    
-    <Head title="Video |" />
+    <Head>
+
+      <meta name='description' 
+            content='Stream new music videos for free and more at NewFreeSongs, enjoy.' />
+
+      <meta name='keywords'
+            content='Hipop music video, Stream mp4,Music video, maskandi videos, piano video, download music video ,new free music video ' />
+      <!--- Open Graph --->
+      <meta property='og:title'
+            content='Stream Videos | NewFreeSongs' />
+
+      <meta property='og:description'
+            content='Stream new music videos for free and more at NewFreeSongs, enjoy.' />
+
+      <meta property='og:image' 
+            content='https://newfreesongs.com/public/assets/images/log.png' />
+
+      <meta property='og:url' 
+            content="https://newfreesongs.com/videos" />
+
+      <meta property='og:type' 
+            content="website" />
+
+      <meta property='og:site_name' 
+            content="NewFreeSongs" />
+
+         <!--- Twitter Card --->
+      <meta name='twitter:card' 
+            content="https://newfreesongs.com/public/assets/images/log.png" />
+
+      <meta name='twitter:title' 
+            content="Stream Videos | NewFreeSongs" />
+
+      <meta name='twitter:description' 
+           content="Stream new music videos for free and more at NewFreeSongs, enjoy." />
+
+      <title>Videos |</title>
+
+    </Head>
 </template>
 
 <script setup lang="ts">
@@ -27,7 +65,6 @@ import search from      '@/components/app/Search.vue'
 import pagination from '@/components/app/pagination.vue';
 import sharePage from '@/components/app/sharePage.vue';
 import card from '@/components/app/card.vue';
-
 defineProps(['Videos']);
 </script>
 

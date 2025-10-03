@@ -31,9 +31,22 @@ class MusicController  extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function download($filename)
     {
-        //
+      $path  = public_path("musicfiles/$filename").'.mp3';
+      if(!file_exists($path)){
+         return inertia('NotFound');
+      }
+      return response()->download($path,basename($path),[
+          'Pragma' => 'public',
+          'Expires' => 0,
+          'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+          'Cache-Control' => 'private'. false,
+          'Content-type' => 'audio/mpeg/force-download',
+          'Content-Disposition' => 'attachment; filename='.basename($path),
+          'Content-Transfer-Encoding' => 'binary',
+          'Content-Length' => filesize($path)
+       ]);
     }
 
     /**

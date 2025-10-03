@@ -16,17 +16,11 @@
                       <p class="card-text">
                         {{ props.Track.description }}
                         <br></p>
-                   
-                      <form action="../../download.php" method="POST" >
-                       <div class="mbr-section-btn">
-                          <button type="submit" id="btn-download" class="btn btn-info" > 
-                                 DOWNLOAD 
-                             </button>
-                          </div>
-                      </form>
-          
-                      <audio  controls style="margin-top: 5%;">
-                       <source :src="`/assets/music/${ props.Track.title }.mp3`" type="audio/mpeg" />
+                        <div class="mbr-section-btn">
+                        <a :href="route('Download',{filename: props.Track.title})" class="btn btn-info">Donwload</a>
+                        </div>
+                      <audio ref="audio"  controls style="margin-top: 5%;">
+                       <source ref="audio" :src="`/music/${ props.Track.title }.mp3`" type="audio/mpeg" />
                       </audio>
                 </div>
             </div>
@@ -38,12 +32,14 @@
 </template>
 
 <script setup lang="ts">
+  import { route } from 'ziggy-js'
 const props = defineProps({
      Track:{
       type:Object,
       required:true
      }
 })
+
 </script>
 
 <style scoped>

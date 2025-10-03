@@ -26,11 +26,11 @@ class ResetDailyVisits extends Command
      */
     public function handle()
     {
+        DB::table('daily_visits')->truncate();
         DB::table('music')->update(['daily_visits'=>0]);
         DB::table('vidoes')->update(['daily_visits'=>0]);
         DB::table('news')->update(['daily_visits'=>0]);
-        DB::table('daily_visits')->truncate();
-        
+      
         $this->info('All music , videos, news \' daily visits have been reset to 0.');
     }
 }

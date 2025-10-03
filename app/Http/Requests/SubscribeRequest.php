@@ -29,7 +29,7 @@ class SubscribeRequest extends FormRequest
     public function messages()
     {
         return [
-          'email.unique' => 'That email is already subscibed'
+          'email.unique' => 'That email is already subscribe'
         ];
     }
 }
