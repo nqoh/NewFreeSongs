@@ -39,16 +39,17 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
         return [
             ...parent::share($request),
             'name' => config('app.name'),
-            'comment' => session('comment'),    
+            'comment' => session('comment'),  
+            'auth.user' => fn () => $request->user() ? $request->user()->only('id','name','email') : null , 
+            'login' => session('login'),
+            'musicExists' => session('musicExists'),
             'ziggy' => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }
 }

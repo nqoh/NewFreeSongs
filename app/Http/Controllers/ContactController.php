@@ -12,9 +12,9 @@ class ContactController extends Controller
         $request->validated();
         
         Contact::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'message' => $request->message,
+            'name' => request('name'),
+            'email' => request('email'),
+            'message' => request('message'),
         ]);
 
         return back() ;

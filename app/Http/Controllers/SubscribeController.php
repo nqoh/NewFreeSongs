@@ -13,7 +13,7 @@ class SubscribeController extends Controller
      */
     public function __invoke(SubscribeRequest $request)
     {
-        Subscribe::create(['email' => $request->email]);
+        Subscribe::create(['email' => request('email')]);
         return back();
     }
 }

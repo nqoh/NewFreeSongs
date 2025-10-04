@@ -31,9 +31,9 @@ class NewsController extends Controller
      */
     public function storeComment(CommentRequest $request)
     {
-          News::find($request->id)->comments()->create([
-            'name'=> $request->name,
-            'message' => $request->message
+          News::find(request('id'))->comments()->create([
+            'name'=> request('name'),
+            'message' => request('message')
           ]);
 
           return back()->with('comment','Your comment was successfuly!');
