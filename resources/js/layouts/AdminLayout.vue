@@ -9,10 +9,22 @@
                         <img src="/assets/images/favCon.png" loading="lazy" alt="NewFreeMusic">
                     </Link>
                     <Link class="navbar-caption text-info" :href="route('home')" >NEWFREESONGS </Link>
-                    <span style="margin-left: 50%;">
-                       <Link class="nav-link link" >Upload</Link> -
-                       <Link class="nav-link link" >Edit</Link>
-                       <Link class="nav-link link" :style="[$page.component == 'Admin/Auth/Register' ? active : '']"  :href="route('Register')">Add Admin</Link>
+                    <span style="margin-left: 35%; " v-if="$page.props.auth.user">
+
+                       <Link class="nav-link link" 
+                          style="margin-right: 10px;" 
+                          :style="[$page.component == 'Admin/Deshboard' ? active : '']" 
+                          :href="route('Deshboard')">UPLOAD</Link> 
+
+                       <Link class="nav-link link" 
+                         style="margin-right: 10px;" 
+                         :style="[$page.component == 'Admin/Table' ? active : '']" 
+                         :href="route('Edit')" >EDIT</Link>&nbsp;&nbsp;&nbsp; 
+
+                       <Link class="nav-link link" 
+                          :style="[$page.component == 'Admin/Auth/Register' ? active : '']"  
+                          :href="route('Register')">ADD ADMIN</Link>
+                          
                     </span>
                 </div>
             </div>
@@ -28,7 +40,8 @@
 
                    <span v-else>
                     <li  class="nav-item">
-                     <span class="title">Supper Admin</span>&nbsp;&nbsp; 
+                     <span class="title" v-if="$page.props.auth.user.name == 'NewFreeSongs'">Supper Admin</span>&nbsp;&nbsp; 
+                     <span class="title" v-else>Admin</span>&nbsp;&nbsp; 
                      <span class="title" style="font-size: 30px;">
                         {{ $page.props.auth.user.name.toUpperCase() }}
                     </span>
@@ -48,8 +61,8 @@
 </template>
 
 <script setup lang="ts">
-    import { route } from 'ziggy-js'
-     const active = 'color:#F1C050; text-decoration:underline'
+  import { route } from 'ziggy-js'
+  const active = 'text-decoration:underline; font-weight:bold'
 </script>
 
 <style scoped>

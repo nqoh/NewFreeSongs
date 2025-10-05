@@ -1,7 +1,7 @@
 <template>
     <div>
-        <form @submit.prevent="UploadMusic">
-         <h1 class="title" align="center">Music</h1>
+        <form @submit.prevent="submitData('StoreMusic')">
+          <h1 class="title" align="center" style="margin-bottom: 0px;">Music</h1>
           <div class="row row-sm-offset">
            <div class="col-xs-12 ">
 
@@ -63,33 +63,17 @@
 </template>
 
 <script setup lang="ts">
-  import { route } from 'ziggy-js';
   import FormInput from '../FormInput.vue';
   import { useForm } from '@inertiajs/vue3';
-  import { ref } from 'vue';
+  import HandleSubmit from '@/composable/HandleSubmit'
 
   const form =  useForm({music:null,image:null,genre:'',description:''});
-  const flash = ref(false);
+ 
+  const { flash, submitData, HadleImage, HadleMusic } =  HandleSubmit(form);
+  
 
-  const HadleMusic = (e:any)=>{
-     form.music= e.target.files[0]
-  }
-  const HadleImage = (e:any)=>{
-    form.image= e.target.files[0]
-  }
+  
 
-  const UploadMusic = ()=>{
-    form.post(route('StoreMusic'),{
-        onSuccess(){
-         form.clearErrors()
-         form.reset()
-         flash.value = true
-         setTimeout(()=>{
-           flash.value = false
-         }, 3000)
-        }
-    })
- }
 </script>
 
 <style scoped>

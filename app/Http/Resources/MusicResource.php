@@ -20,6 +20,7 @@ class MusicResource extends JsonResource
             'description' => $this->description,
             'image' => $this->image,
             'genre' => $this->genre,
+            'type' => 'Music'
         ];
     }
 }

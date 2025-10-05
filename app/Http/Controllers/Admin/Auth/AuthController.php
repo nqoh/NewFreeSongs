@@ -19,20 +19,18 @@ class AuthController extends Controller
              return redirect()->route('Deshboard');
            }
          
-            return back()->with('login','Invalid Creadentials');
+            return back()->with('login','Invalid Credentials');
     }
 
     public function Register(RegiusterRequest $request)
     {
-         $user = User::create([
-                       'email' => request('email'),
-                       'name' => request('name'),
-                       'password' => Hash::make(request('password')),
-                    ]);
-
-         Auth::login($user);    
+           User::create([
+                'email' => request('email'),
+                'name' => request('name'),
+                'password' => Hash::make(request('password')),
+              ]);
          
-         return redirect()->route('Deshboard');
+         return back()->with('register','NEW ADMIN HAS BEEN REGISTERED SUCCESSFULY');
     }
 
     public function logout()

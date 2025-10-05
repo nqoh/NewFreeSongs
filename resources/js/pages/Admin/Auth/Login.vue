@@ -1,7 +1,7 @@
 <template>
-    <section class="mbr-section main" >
+    <section class="mbr-section main" style="padding: 100px 0px 0px 0px;" >
     <div class="mbr-section mbr-section__container mbr-section__container--middle ">
-    <div class="container "   style="width: 45%;">
+    <div class="container "   style="width: 45%; border: 2px solid #d0f0ee;">
 
         <div class="row">
             <div class="col-xs-12 text-xs-center">

@@ -20,6 +20,7 @@ class videoResource extends JsonResource
             'description' => $this->description,
             'image' => $this->image,
             'endpoint' => $this->endpoint,
+            'type' => 'Video'
         ];
     }
 }

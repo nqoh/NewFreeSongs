@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\videoResource;
 use App\Models\Videos;
 use App\DailyVisits;
+use App\Http\Requests\VideoRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VideosController extends Controller
 {
@@ -28,9 +30,24 @@ class VideosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VideoRequest $request)
     {
-        //
+        $image = request('image');
+        $imageName= time().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('images'),$imageName);
+
+        $input = public_path('images/'.time().$imageName);
+        exec("magick convert {$input} -resize 364x350 {$input}");
+
+        Videos::create([
+            'user_id'=> Auth::id(),
+            'title' => request('title'),
+            'image' => $imageName,
+            'description' => request('description'),
+            'endpoint' => request('endpoint')
+        ]);
+
+        return back();
     }
 
     /**

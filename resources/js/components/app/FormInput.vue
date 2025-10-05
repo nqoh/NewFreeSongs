@@ -6,6 +6,7 @@
 
        <input :type="props.type" class="form-control" 
               :accept="accept"
+              :value="modelValue"
               @keyup="$emit('update:modelValue',$event.target.value)"
               required="true">
 
@@ -15,11 +16,11 @@
 </template>
 
 <script setup lang="ts">
-
+  defineModel('modelValue')
   const props = defineProps({
        name:{
           type:String,
-          required:true,
+          default:'',
        },
        error:{
           type:String,

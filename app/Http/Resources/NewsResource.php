@@ -20,6 +20,7 @@ class newsResource extends JsonResource
             'title'   => $this->title,
             'description' => $this->description,
             'image' => $this->image,
+            'type' => 'News',
             'comments' =>  Comment::where('commentable_id',$this->id)->latest()->paginate(2)
         ];
     }

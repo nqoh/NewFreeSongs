@@ -6,7 +6,9 @@ use App\Http\Requests\CommentRequest;
 use App\Http\Resources\newsResource;
 use App\Models\News;
 use App\DailyVisits;
+use App\Http\Requests\NewsRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -29,6 +31,26 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    public function store(NewsRequest $request)
+    {
+        $image = request('image');
+        $imageName= time().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('images'),$imageName);
+
+        $input = public_path('images/'.time().$imageName);
+        exec("magick convert {$input} -resize 364x350 {$input}");
+
+        News::create([
+            'user_id'=> Auth::id(),
+            'title' => request('title'),
+            'image' => $imageName,
+            'description' => request('description'),
+        ]);
+
+        return back();
+    } 
+
     public function storeComment(CommentRequest $request)
     {
           News::find(request('id'))->comments()->create([

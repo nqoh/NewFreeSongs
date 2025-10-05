@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
             'comment' => session('comment'),  
             'auth.user' => fn () => $request->user() ? $request->user()->only('id','name','email') : null , 
             'login' => session('login'),
+            'register' => session('register'),
             'musicExists' => session('musicExists'),
             'ziggy' => [
                 ...(new Ziggy)->toArray(),

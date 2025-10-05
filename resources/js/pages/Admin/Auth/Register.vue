@@ -1,8 +1,12 @@
 <template>
- <section class="mbr-section main">
+ <section class="mbr-section main" style="padding: 100px 0px 0px 0px;">
     <div class="mbr-section mbr-section__container mbr-section__container--middle ">
-    <div class="container "   style="width: 45%;">
-        
+    <div class="container "   style="width: 45%; border: 2px solid #d0f0ee;" >
+      
+       <div v-if="$page.props.register" class="alert alert-success text-center" align="center">
+            <strong>{{ $page.props.register }}</strong>
+        </div>
+
         <div class="row">
             <div class="col-xs-12 text-xs-center">
                 <h3 class="mbr-section-title display-2 title" >Register</h3>
@@ -10,7 +14,7 @@
             </div>
          </div>
 
-         <form @submit.prevent="form.post(route('Register'))">
+         <form @submit.prevent="Register">
             
            <FormInput type="text" name="Name" v-model="form.name" :error="form.errors.name" />
            <FormInput type="email" name="Email" v-model="form.email" :error="form.errors.email" />
@@ -41,6 +45,15 @@
    import { useForm } from '@inertiajs/vue3';
    import { route } from 'ziggy-js';
    const form = useForm({name:'',email:'', password:'',password_confirmation:''})
+
+   const Register =()=>{
+    form.post(route('AddNewAdmin'),{
+        onSuccess(){
+         form.clearErrors()
+         form.reset()
+        }
+    })
+   }
 
 </script>
 
