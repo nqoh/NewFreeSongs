@@ -5,6 +5,8 @@ import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 import DefaultLayout from './layouts/DefaultLayout.vue';
 import '../css/style.css'
+import 'vue3-toaster/dist/style.css';
+
 
 const appName = import.meta.env.VITE_APP_NAME ;
 

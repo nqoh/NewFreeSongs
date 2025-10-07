@@ -2,9 +2,9 @@
     <div>
       <div id="myModal" class="modal" style="display:block">
         <div class="modal-content">
-          <span class="close"  @click="$emit('update:modalType','none')">&times;</span>
+          <span class="close"  @click="$emit('update:modalStyleDisplay','none')">&times;</span>
           <h1 class="title" align="center" style="margin-bottom: 0px;">Update {{ form.type }}</h1>
-          <form >
+          <form @submit.prevent="" >
     
             <FormInput name="Title" v-if="form.type !='Music'"
                type="text" 
@@ -31,25 +31,26 @@
              </div>
             <div class="form-group">
                <label class="form-control-label" for="form1-48-message">Description</label>
-                <textarea class="form-control"   rows="7" v-model.trim="form.description"></textarea>
+                <textarea class="form-control" rows="7" v-model="form.description"></textarea>
                    <p style="color: red" v-if="form.errors.description">
                         {{ form.errors.description }}
                   </p> <br> 
              </div>
- 
-              <FormInput name="Select Image File" 
+                
+            <FormInput name="Select Image File" 
                 type="file" 
-                v-model="form.image"
                 accept=".jpg,.png"
-                @change="HandleSubmit(form).HadleImage"
+                @change="props.HadleImage"
                 :error="form.errors.image"
-                />  
+                :required="isRequired"
+                />   
 
              <div align="center">
               <img :src="`/images/${form.Displayimage}`"  style="width: 50%;" />
              </div><br/>
             
-             <button type="submit" class="btn btn-primary" align="center">
+             <div align="center">
+              <button  class="btn btn-primary" @click="$emit('SubmitUpdate')" >
                <span v-if="form.processing">
                 <img src="/assets/images/loader.gif" width="25" />
                 </span>
@@ -57,6 +58,7 @@
                     UPDATE
                </span>
              </button>
+            </div>
 
           </form>
         </div>
@@ -66,8 +68,17 @@
   </template>
   <script setup lang="ts">
   defineModel('form')
-  defineModel('modalType')
+  defineModel('modalStyleDisplay')
+  defineEmits(['SubmitUpdate'])
+  const props = defineProps({
+    HadleImage:{
+        type : Function,
+    }
+  });
+
   import FormInput from '../FormInput.vue';
-  import HandleSubmit from '@/composable/HandleSubmit'
+  import { ref } from 'vue'
+  const isRequired = ref(false)
+
   </script>
  

@@ -8,7 +8,8 @@
               :accept="accept"
               :value="modelValue"
               @keyup="$emit('update:modelValue',$event.target.value)"
-              required="true">
+              :required="required"
+              >
 
         <p style="color: red" v-if="props.error">{{ props.error}}</p> <br>
 
@@ -34,6 +35,10 @@
           type:String,
           default:''
        },
+       required:{
+         type:Boolean,
+         default:true
+       }
        
   });
 </script>

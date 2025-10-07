@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="submitData('StoreNews')">
+        <form @submit.prevent="submitData('news.store')">
          <h1 class="title" align="center" style="margin-bottom: 0px;">News</h1>
           <div class="row row-sm-offset">
 
@@ -12,7 +12,7 @@
             <div class="form-group">
 
               <FormInput name="Select Image File" 
-                type="file" v-model="form.image"
+                type="file"
                 accept=".jpg,.png"
                 @change="HadleImage"
                 :error="form.errors.image" />
@@ -51,8 +51,7 @@
   import HandleSubmit from '@/composable/HandleSubmit'
 
   const form =  useForm({image:'',title:'',description:''});
-
-  const { flash, submitData, HadleImage } =  HandleSubmit(form);
+  const { flash, submitData, HadleImage } =  HandleSubmit(form, false);
 
 </script>
 

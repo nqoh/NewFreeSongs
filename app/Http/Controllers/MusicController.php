@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\ResizeImage;
 use App\DailyVisits;
 use App\Http\Requests\MusicRequest;
+use App\Http\Requests\UpdateMusicRequest;
 use App\Models\Music;
 use Illuminate\Http\Request;
 use App\Http\Resources\MusicResource;
 use Illuminate\Support\Facades\Auth;
 use getid3_writetags;
+use Illuminate\Support\Facades\File;
 
 class MusicController  extends Controller
 {
     use DailyVisits;
-
+    use ResizeImage;
 
     public function index()
     {
@@ -63,12 +66,11 @@ class MusicController  extends Controller
          if(file_exists(public_path('musicfiles/'.$music->getClientOriginalName()))){
             return back()->with('musicExists','Music file alread exists');
          }else{
-
+         $newImageName = time().'.'.$image->getClientOriginalExtension();
          $music->move(public_path('musicfiles'), $music->getClientOriginalName());
-         $image->move(public_path('images'),time().'.'.$image->getClientOriginalExtension());
-
-         $input = public_path('images/'.time().'.'.$image->getClientOriginalExtension());
-         exec("magick convert {$input} -resize 364x350 {$input}");
+         $image->move(public_path('images'),$newImageName);
+ 
+         $this->reisze($newImageName);
 
          require_once base_path('vendor/james-heinrich/getid3/getid3/getid3.php');
          require_once base_path('vendor/james-heinrich/getid3/getid3/write.php');
@@ -116,7 +118,7 @@ class MusicController  extends Controller
            'user_id'=> Auth::id(),
            'title' => pathinfo($music->getClientOriginalName(),PATHINFO_FILENAME),
            'description' => request('description'),
-           'image' =>  time().'.'.$image->getClientOriginalExtension(),
+           'image' =>  $newImageName,
            'genre' => request('genre')
          ]);
 
@@ -135,7 +137,11 @@ class MusicController  extends Controller
         if($music){
 
          $this->visits($request, $music,"Music");   
-         $suggestions = MusicResource::collection(Music::inRandomOrder()->take(3)->get()); 
+         $suggestions = MusicResource::collection(
+            Music::whereNotIn('id',[$music->id])->where('genre',$music->genre)
+                  ->inRandomOrder()->take(3)->get()
+                ); 
+                
          $track = new MusicResource($music);
          return inertia('DownloadTrack', ['Track'=> $track,'suggestions'=> $suggestions]);
          
@@ -154,9 +160,31 @@ class MusicController  extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Music $music)
+    public function update(UpdateMusicRequest $request, )
     {
-        //
+         $image = request('image');
+         $music = Music::where('id', request('id'))->first();
+        if($image){
+          $OldPathImage = public_path('images/'.$music->image);
+           if(File::exists($OldPathImage)){
+              unlink($OldPathImage);
+            }
+
+            $newImageName = time().'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('images'),$newImageName);
+    
+            $this->reisze($newImageName);
+
+            $music->update([
+                'image' => $newImageName,
+              ]);
+          }
+           $music->update([
+              'description'=>request('description'),
+              'genre'=>request('genre'),
+            ]);
+
+           return back()->with('Updated' ,'Music updated');
     }
 
     /**
@@ -164,6 +192,8 @@ class MusicController  extends Controller
      */
     public function destroy(Music $music)
     {
-        //
+          $music->delete();
+          return redirect()->route('Edit');
+        //   return back()->with('Deleted' ,'Music Destroyed');
     }
 }

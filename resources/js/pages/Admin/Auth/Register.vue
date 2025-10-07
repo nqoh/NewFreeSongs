@@ -3,7 +3,7 @@
     <div class="mbr-section mbr-section__container mbr-section__container--middle ">
     <div class="container "   style="width: 45%; border: 2px solid #d0f0ee;" >
       
-       <div v-if="$page.props.register" class="alert alert-success text-center" align="center">
+       <div v-if="$page.props.register" class="alert alert-success text-center" style="margin-top: 10px; margin-bottom: 0px;" align="center">
             <strong>{{ $page.props.register }}</strong>
         </div>
 
@@ -47,7 +47,7 @@
    const form = useForm({name:'',email:'', password:'',password_confirmation:''})
 
    const Register =()=>{
-    form.post(route('AddNewAdmin'),{
+    form.post(route('register.store'),{
         onSuccess(){
          form.clearErrors()
          form.reset()

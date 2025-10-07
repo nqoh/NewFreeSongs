@@ -13,7 +13,7 @@
           {{ $page.props.comment }}
         </div>
 
-          <form @submit.prevent="submitComment" >
+          <form @submit.prevent="submitData('comment.store')" >
             <div class="form-group">
                 <label class="form-control-label" for="name">
                     Name <span  style="color: red;">*</span></label>
@@ -46,38 +46,12 @@
 </template>
 
 <script setup lang="ts">
+
 import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
-
-const props = defineProps({
-         id:{
-           required:true,
-           type:Number
-     }
-})
-
- const form = useForm({
-        name:'',
-        message:'',
-        id:props.id,
-   })
-
-
-  const flash  = ref(false)
-
-   const submitComment = ()=>{
-    form.post('/comment', {
-      preserveScroll:true,
-       onSuccess(){
-         form.clearErrors()
-         form.reset()
-         flash.value = true
-         setTimeout(()=>{
-           flash.value = false
-         }, 2000)
-       }
-    },)
-   }
+import HandleSubmits from '@/composable/HandleSubmit'
+const props = defineProps({id:{required:true, type:Number}})
+const form = useForm({ name:'', message:'',id:props.id, })
+const { submitData , flash } = HandleSubmits(form, true);
 
 </script>
 

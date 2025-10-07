@@ -4,7 +4,7 @@
     <section class="mbr-cards mbr-section mbr-section-nopadding" id="features3-1q">
      <div class="mbr-cards-row row" v-for="(i, RowIndex) in 3" :key="i">
        <!----Music Card Component-->
-       <template v-for="track in Music.data.slice(RowIndex,RowIndex + 1  * 3)" :key="track.id">
+       <template v-for="track in Music.data.slice(RowIndex * 3 , (RowIndex + 1)  * 3)" :key="track.id">
         <card 
         :title="track.title" 
         type="Music" 

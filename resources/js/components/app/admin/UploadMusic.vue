@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="submitData('StoreMusic')">
+        <form @submit.prevent="submitData('music.store')">
           <h1 class="title" align="center" style="margin-bottom: 0px;">Music</h1>
           <div class="row row-sm-offset">
            <div class="col-xs-12 ">
@@ -16,14 +16,13 @@
             <div class="form-group">
 
              <FormInput name="Select Music File" type="file" 
-             v-model="form.music" :error="form.errors.music"
              @change="HadleMusic"
              accept=".mp3"  />
 
              <FormInput name="Select Image File" type="file" 
-             v-model="form.image" :error="form.errors.image"
-             @change="HadleImage"
-             accept=".jpg,.png" />
+               :error="form.errors.image"
+               @change="HadleImage"
+               accept=".jpg,.png" />
 
              <div class="form-group">
               <label class="form-control-label" for="form1-48-name">Select Genre</label>
@@ -67,9 +66,9 @@
   import { useForm } from '@inertiajs/vue3';
   import HandleSubmit from '@/composable/HandleSubmit'
 
-  const form =  useForm({music:null,image:null,genre:'',description:''});
+  const form =  useForm({music:'',image:null,genre:'',description:''});
  
-  const { flash, submitData, HadleImage, HadleMusic } =  HandleSubmit(form);
+  const { flash, submitData, HadleImage, HadleMusic } =  HandleSubmit(form,false);
   
 
   

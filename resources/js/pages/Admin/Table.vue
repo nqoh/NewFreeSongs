@@ -2,13 +2,12 @@
     <section class="mbr-section main" style="padding: 100px 0px 0px 0px;">
        <div class="mbr-section mbr-section__container mbr-section__container--middle  " >
        <div class="container "   style="width: 100%;">
-        <div class="form-group" style=" border: 1px solid #d0f0ee;"  >
-         <input type="text"  v-model="query" class="form-control" 
-          placeholder="Search..." ref="searchInput"  />  
+        <TableSearch :Query="Query" />
+        <div v-if="flash" class="alert alert-success text-center" align="center">
+          <strong>Updated Successfuly</strong>
         </div>
         <div class="table-wrapper">
           <div class="table-container">
-
           <table>
             <thead>
               <tr>
@@ -38,37 +37,70 @@
             <img src="/assets/images/edit.png" @click="toogleModal(data)"
              style="width: 20px; cursor: pointer;" />
             &nbsp; &nbsp; 
-            <img src="/assets/images/bin.png" style="width: 20px; cursor: pointer;" />
+            <img src="/assets/images/bin.png" @click="Delete(data)" style="width: 20px; cursor: pointer;" />
            </td>
           </tr>
          </tbody>
         </table>
          </div>
         </div>
-
-       </div>
+       </div> 
        </div>
        <pagination  :meta="meta" :Query="Query" />
-       <modal v-model:modalType="modalType" v-model:form="form" :style="{ display: modalType }" />
+
+       <modal  v-if="modalStyleDisplay === 'block'"
+        v-model:modalStyleDisplay="modalStyleDisplay" 
+        :HadleImage="HadleImage" v-model:form="form"
+        @SubmitUpdate="UpdateFrom" 
+        :style="{ display: modalStyleDisplay }" 
+        />
     </section>
    </template>
    
    <script setup lang="ts">
+     import TableSearch from '@/components/app/admin/TableSearch.vue';
      import AdminLayout from '@/layouts/AdminLayout.vue';
      import pagination from '@/components/app/pagination.vue';
-     import {  reactive , ref, watch , onMounted} from 'vue';
-     import { router   } from '@inertiajs/vue3';
-     import { route } from 'ziggy-js';
+     import {  reactive , ref, watch} from 'vue';
      import modal from '@/components/app/admin/modal.vue';
      import { useForm } from '@inertiajs/vue3';
+     import HandleSubmit from '@/composable/HandleSubmit'
      defineOptions({ layout : AdminLayout})
-
-
-     const form =  useForm({title:'', type:'',description:'',genre:'',endpoint:'', Displayimage:'',image:null});
+   
+     const modalStyleDisplay = ref('none')
+     const form =  useForm({title:'', type:'',description:null,genre:'',endpoint:'', Displayimage:'',image:null,id:null});
      const props = defineProps(['Data','Query']);
 
+     const { submitData, HadleImage, flash, DeleteData,  } = HandleSubmit(form,false) 
+      
+     watch(flash, ()=>{
+           if(flash){
+            modalStyleDisplay.value = 'none'
+        }
+     })
+   
+     const UpdateFrom = ()=>{ 
+          if(form.type  === "Music"){
+            submitData('music.update')
+          }else if(form.type === "Video"){
+            submitData('video.update')
+          }else if(form.type === "News"){
+            submitData('news.update')
+          }
+     }
 
-     const modalType = ref('none')
+     const Delete = (data:any)=>{
+         if(confirm('Are you sure you want to delete this  '+ data.type +' '+ data.title)){
+          if(data.type  === "Music"){
+            DeleteData('music.destroy', data.id);
+          }else if(data.type === "Video"){
+            DeleteData('video.destroy', data.id);
+          }else if(data.type === "News"){
+            DeleteData('news.destroy', data.id);
+          }
+         }
+      }
+        
      const toogleModal =  (data: any)=>{
         form.title = data.title;
         form.type = data.type;
@@ -77,7 +109,8 @@
         form.endpoint = data.endpoint
         form.Displayimage = data.image
         form.image = null
-        modalType.value = 'block'
+        form.id= data.id
+        modalStyleDisplay.value = 'block'
      }
 
      const meta = reactive({
@@ -86,24 +119,7 @@
        path: props.Data.path
      })
 
-     const query = ref(props.Query)
      
-     let debounceTimeout = null as any;
-     const searchInput = ref<HTMLInputElement | null>(null);
-
-    watch(query, (newVal) => {
-       if (debounceTimeout) {
-        clearTimeout(debounceTimeout)
-      }
-    debounceTimeout = setTimeout(() => {
-        router.get(route('Edit'),{query: newVal })
-        searchInput.value?.focus()
-       }, 1000)
-    })
-
-    onMounted(() => {
-     searchInput.value?.focus()
-     })
    </script>
    
    <style scoped>

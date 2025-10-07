@@ -7,13 +7,16 @@ use App\Http\Resources\newsResource;
 use App\Models\News;
 use App\DailyVisits;
 use App\Http\Requests\NewsRequest;
+use App\Http\Requests\UpdateNewsRequest;
+use App\ResizeImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class NewsController extends Controller
 {
     use DailyVisits;
-
+    use ResizeImage;
     public function index()
     {
         $news = newsResource::collection(News::orderBy('daily_visits','DESC')->paginate(10));
@@ -35,16 +38,16 @@ class NewsController extends Controller
     public function store(NewsRequest $request)
     {
         $image = request('image');
-        $imageName= time().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('images'),$imageName);
 
-        $input = public_path('images/'.time().$imageName);
-        exec("magick convert {$input} -resize 364x350 {$input}");
+        $newImageName = time().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('images'),$newImageName);
+
+        $this->reisze($newImageName);
 
         News::create([
             'user_id'=> Auth::id(),
             'title' => request('title'),
-            'image' => $imageName,
+            'image' => $newImageName,
             'description' => request('description'),
         ]);
 
@@ -91,16 +94,38 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, News $news)
+    public function update(UpdateNewsRequest $request)
     {
-        //
-    }
+        $music = News::where('id', request('id'))->first();
+        $image = request('image');
+       if($image){
+          $OldPathImage = public_path('images/'.$music->image);
+           if(File::exists($OldPathImage)){
+              unlink($OldPathImage);
+            }
+           $newImageName = time().'.'.$image->getClientOriginalExtension();
+           $image->move(public_path('images'),$newImageName);
 
+           $this->reisze($newImageName);
+
+           $music->update([
+               'image' => $newImageName,
+             ]);
+          }
+          $music->update([
+             'description'=>request('description'),
+             'title'=>request('title'),
+           ]);
+
+          return back()->with('Updated' ,'News updated');
+        }
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(News $news)
     {
-        //
+        $news->delete();
+        return redirect()->route('Edit');
+        // return back()->with('Deleted' ,'News Destroyed');
     }
 }

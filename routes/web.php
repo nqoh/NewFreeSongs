@@ -30,11 +30,11 @@ Route::middleware('guest')->group(function(){
     Route::controller(NewsController::class)->group(function(){
         Route::get('/news', 'index')->name('news');
         Route::get('/news/{article}','show')->name('readNews');
-        Route::post('/comment','storeComment')->name('Comment');
+        Route::post('/comment','storeComment')->name('comment.store');
     });
 
-    Route::post('/contactus', [ContactController::class,'store'])->name('contact');
-    Route::post('/subscribe', SubscribeController::class)->name('subscribe');
+    Route::post('/contactus', [ContactController::class,'store'])->name('contact.store');
+    Route::post('/subscribe', SubscribeController::class)->name('subscribe.store');
     Route::get('/search', SearchController::class)->name('search');
 
     Route::inertia('/terms', 'Terms')->name('terms');
@@ -43,17 +43,18 @@ Route::middleware('guest')->group(function(){
     Route::inertia('/aboutus', 'Aboutus')->name('aboutus');
     Route::inertia('/contactus', 'Contactus')->name('contactus');
     Route::inertia('/video/{videoName}', 'ViewVideo')->name('viewVideo');
-});
 
-
-Route::middleware('guest')->prefix('kontrol')->group(function(){
-
-    Route::inertia('/', 'Admin/Auth/Login')->name('Login');
-
-    Route::controller(AuthController::class)->group(function(){
-        Route::post('/', 'Login')->name('Login');
+    Route::prefix('kontrol')->group(function(){
+        Route::inertia('/', 'Admin/Auth/Login')->name('Login');
+        Route::controller(AuthController::class)->group(function(){
+            Route::post('/', 'Login')->name('Login');
+        });
     });
+
 });
+
+
+
 
 Route::middleware('auth')->prefix('kontrol')->group(function(){
 
@@ -61,24 +62,24 @@ Route::middleware('auth')->prefix('kontrol')->group(function(){
       Route::get('/logout',[AuthController::class, 'logout'])->name('Logout');
       Route::get('/table', TableController::class)->name('Edit');
       Route::inertia('/register','Admin/Auth/Register')->name('Register');
-      Route::post('/AddNewAdmin',[AuthController::class,'Register'])->name('AddNewAdmin');
+      Route::post('/register',[AuthController::class,'Register'])->name('register.store');
 
       Route::controller(MusicController::class)->group(function(){
-        Route::post('/music', 'store')->name('StoreMusic');
-        Route::patch('/music', 'update')->name('UpdateMusic');
-        Route::delete('/muisc', 'destroy')->name('DeleteMusic');
+        Route::post('/musicStore', 'store')->name('music.store');
+        Route::post('/musicUpdate', 'update')->name('music.update');
+        Route::delete('/muiscDestroy/{music}', 'destroy')->name('music.destroy');
       });
 
       Route::controller(VideosController::class)->group(function(){
-        Route::post('/video', 'store')->name('StoreVideo');
-        Route::patch('/video', 'update')->name('UpdateVideo');
-        Route::delete('/video', 'destroy')->name('DeleteVideo');
+        Route::post('/videoStore', 'store')->name('video.store');
+        Route::post('/videoUpdate', 'update')->name('video.update');
+        Route::delete('/videoDelete/{video}', 'destroy')->name('video.destroy');
       });
 
       Route::controller(NewsController::class)->group(function(){
-        Route::post('/news', 'store')->name('StoreNews');
-        Route::patch('/news', 'update')->name('UpdateNews');
-        Route::delete('/news', 'destroy')->name('DeleteNews');
+        Route::post('/newsStore', 'store')->name('news.store');
+        Route::post('/newsUpdate', 'update')->name('news.update');
+        Route::delete('/newsDelete/{news}', 'destroy')->name('news.destroy');
       });
 
 });
@@ -87,3 +88,4 @@ Route::middleware('auth')->prefix('kontrol')->group(function(){
 Route::fallback(function(){
     return inertia('NotFound');
 });
+

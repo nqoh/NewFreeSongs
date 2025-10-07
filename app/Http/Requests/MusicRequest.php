@@ -22,7 +22,7 @@ class MusicRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => ['required','file','mimes:png,jpg'],
+            'image' => ['required','image','mimes:png,jpg,jpeg','max:2048'],
             'music' => ['required','file','mimes:mp3'],
             'description' => ['required','min:20'],
             'genre' => ['required','string']

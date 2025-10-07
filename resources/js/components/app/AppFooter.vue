@@ -16,7 +16,7 @@
                       <div class="alert alert-danger" v-if="form.errors.email" id="m-error" style="text-align: center;">
                           <strong>{{ form.errors.email }} </strong>
                       </div>
-                      <form @submit.prevent="submitForm" class="mbr-form"  data-form-title="Subscribe to our Newsletter">
+                      <form @submit.prevent="submitData('subscribe.store')" class="mbr-form"  data-form-title="Subscribe to our Newsletter">
                           <input type="hidden"  data-form-email="true">
                           <div class="mbr-subscribe mbr-subscribe-dark input-group">
                               <input type="email"  v-model="form.email" required class="form-control"  placeholder="Enter Your Email Address...">
@@ -47,29 +47,10 @@
 <script setup lang="ts">
     import { route } from 'ziggy-js'
     import { useForm } from '@inertiajs/vue3';
-    import { ref } from 'vue';
-
-
+    import HandleSubmits from '@/composable/HandleSubmit'
     const active = 'color:#F1C050; text-decoration:underline'
-    
     const form  = useForm({email:''})
-
-    const flash  = ref(false)
-
-    const submitForm = ()=>{
-        form.post('/subscribe',{
-            preserveScroll:true,
-            onSuccess(){
-            form.clearErrors()
-            form.reset()
-            flash.value = true
-            setTimeout(()=>{
-            flash.value = false
-             }, 2000)
-          }
-        });
-    }
-
+    const { submitData , flash } = HandleSubmits(form, true);
 </script>
 
 <style scoped>

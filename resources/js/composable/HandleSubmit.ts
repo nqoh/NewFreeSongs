@@ -1,11 +1,12 @@
 import { ref } from 'vue';
 import { route } from 'ziggy-js';
-
-const submit = (form:any)=>{
+const submit = (form:any, preserveScroll:boolean)=>{
 
   const flash = ref(false);
+
   function submitData(endpoint:string){
        form.post(route(endpoint),{
+        preserveScroll:preserveScroll,
         onSuccess(){
          form.clearErrors()
          form.reset()
@@ -16,6 +17,17 @@ const submit = (form:any)=>{
         }
     })
   }
+  
+  function DeleteData(endpoint:string,music:number){
+    form.delete(route(endpoint,music),{
+     onSuccess(){
+      flash.value = true
+      setTimeout(()=>{
+        flash.value = false
+      }, 3000)
+     }
+ })
+}
 
   function HadleImage(e:any){
     form.image= e.target.files[0]
@@ -25,8 +37,7 @@ const submit = (form:any)=>{
     form.music= e.target.files[0]
  }
 
-
-  return { flash , submitData, HadleImage, HadleMusic}
+  return { flash , submitData, HadleImage, HadleMusic, DeleteData }
 }
 
 export default submit;
